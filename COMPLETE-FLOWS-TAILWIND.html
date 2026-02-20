@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhatsApp Business Platform - Complete End-to-End Flows</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .flow-container { max-height: 800px; overflow-y-auto; }
+        .fade-in { animation: fadeIn 0.3s ease-in; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-slate-900 to-slate-800">
+    <div class="min-h-screen p-8">
+        <div class="max-w-7xl mx-auto">
+            <!-- Header -->
+            <div class="text-center mb-12">
+                <h1 class="text-4xl font-bold text-white mb-2">WhatsApp Business Platform</h1>
+                <p class="text-xl text-gray-300">Complete End-to-End Workflows</p>
+                <p class="text-sm text-gray-400 mt-2">Click a journey below to see the COMPLETE workflow from start to finish</p>
+            </div>
+
+            <!-- Journey Selection -->
+            <div id="journeySelector" class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+                <button onclick="startJourney('inquiry')" class="bg-gradient-to-br from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 text-white rounded-lg p-6 text-left transform hover:scale-105 transition">
+                    <h2 class="text-2xl font-bold mb-2">📨 Inquiry → Purchase</h2>
+                    <p class="text-sm">Customer sends message → Receives offer → Places order → Gets tracked</p>
+                </button>
+
+                <button onclick="startJourney('campaign')" class="bg-gradient-to-br from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white rounded-lg p-6 text-left transform hover:scale-105 transition">
+                    <h2 class="text-2xl font-bold mb-2">📢 Campaign Execution</h2>
+                    <p class="text-sm">Create segment → Design message → Send campaign → Measure results</p>
+                </button>
+
+                <button onclick="startJourney('team')" class="bg-gradient-to-br from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600 text-white rounded-lg p-6 text-left transform hover:scale-105 transition">
+                    <h2 class="text-2xl font-bold mb-2">👥 Team Workflow</h2>
+                    <p class="text-sm">Create team → Manage inbox → Handle orders → Track performance</p>
+                </button>
+
+                <button onclick="startJourney('government')" class="bg-gradient-to-br from-blue-600 to-amber-600 hover:from-blue-700 hover:to-amber-700 text-white rounded-lg p-6 text-left transform hover:scale-105 transition">
+                    <h2 class="text-2xl font-bold mb-2">🏛️ Government Notifications</h2>
+                    <p class="text-sm">Create verified notification → Target regions → Capture leads → Nurture</p>
+                </button>
+            </div>
+
+            <!-- Journey Flow Container -->
+            <div id="flowContainer" class="hidden">
+                <!-- Header with Close Button -->
+                <div class="flex items-center justify-between mb-4">
+                    <h2 id="journeyTitle" class="text-2xl font-bold text-white"></h2>
+                    <button onclick="closeFlow()" class="bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded-lg font-semibold">Close Flow</button>
+                </div>
+
+                <!-- Flow Content -->
+                <div class="bg-white rounded-lg shadow-2xl overflow-hidden">
+                    <!-- Progress Bar -->
+                    <div id="progressContainer" class="bg-gray-100 p-6">
+                        <div id="progressSteps" class="flex items-center justify-between gap-2"></div>
+                    </div>
+
+                    <!-- Flow Screens -->
+                    <div id="flowContent" class="p-8 flow-container min-h-96"></div>
+
+                    <!-- Navigation Buttons -->
+                    <div class="bg-gray-100 p-6 flex justify-between border-t items-center">
+                        <button id="prevBtn" onclick="previousStep()" class="bg-gray-400 hover:bg-gray-500 text-white px-6 py-2 rounded-lg font-semibold disabled:opacity-50">← Previous</button>
+                        <div id="stepJumpers" class="flex gap-2 flex-wrap justify-center"></div>
+                        <button id="nextBtn" onclick="nextStep()" class="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-lg font-semibold">Next →</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.3s ease-in-out;
+        }
+    </style>
+
+    <script>
+        const flows = {
+            inquiry: {
+                title: "📨 Inquiry to Purchase Journey",
+                color: "emerald",
+                steps: [
+                    {
+                        num: 1,
+                        title: "Customer Message Received",
+                        content: `
+                            <div class="space-y-4">
+                                <div class="bg-emerald-50 border-l-4 border-emerald-500 p-6 rounded">
+                                    <div class="flex items-start gap-4">
+                                        <div class="text-3xl">💬</div>
+                                        <div>
+                                            <h3 class="font-bold text-gray-900 mb-2">New Customer Inquiry</h3>
+                                            <p class="text-gray-700">Customer: Priya Sharma</p>
+                                            <p class="text-gray-600 text-sm mt-2">"Hi, I'm interested in your premium skincare set. Do you have details?"</p>
+                                            <div class="mt-3 text-sm text-emerald-600 font-semibold">✓ Message received at 2:34 PM</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="text-sm text-gray-600">Message automatically routed to Smart Inbox for response</div>
+                            </div>
+                        `
+                    },
+                    {
+                        num: 2,
+                        title: "Customer Profile Created",
+                        content: `
+                            <div class="space-y-4">
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div class="bg-gradient-to-br from-blue-50 to-blue-100 p-4 rounded-lg">
+                                        <p class="text-xs text-gray-600 mb-1">Profile Status</p>
+                                        <p class="text-2xl font-bold text-blue-600">Auto-Created</p>
+                                    </div>
+                                    <div class="bg-gradient-to-br from-purple-50 to-purple-100 p-4 rounded-lg">
+                                        <p class="text-xs text-gray-600 mb-1">Segment</p>
+                                        <p class="text-2xl font-bold text-purple-600">Premium</p>
+                                    </div>
+                                </div>
+                                <div class="bg-white border border-gray-200 p-4 rounded-lg">
+                                    <h4 class="font-bold text-gray-900 mb-3">Detected Attributes</h4>
+                                    <ul class="space-y-2 text-sm text-gray-700">
+                                        <li>✓ Age Group: 25-34</li>
+                                        <li>✓ Location: Mumbai</li>
+                                        <li>✓ Interests: Beauty, Wellness</li>
+                                        <li>✓ Price Sensitivity: High</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        `
+                    },
+                    {
+                        num: 3,
+                        title: "Personalized Recommendation Sent",
+                        content: `
+                            <div class="space-y-4">
+                                <div class="bg-gradient-to-r from-emerald-500 to-emerald-600 text-white p-6 rounded-lg">
+                                    <h3 class="font-bold mb-3">📤 Message Sent</h3>
+                                    <p class="text-sm mb-4">Based on customer segment and behavior, system sent personalized offer</p>
+                                    <div class="bg-black/20 p-4 rounded text-sm">
+                                        <p class="mb-3">"Hi Priya! 👋 Here's our premium skincare set designed for your skin type - currently 30% off!"</p>
+                                        <p class="text-emerald-200">Recommendation Engine: 92% match</p>
+                                    </div>
+                                </div>
+                                <div class="grid grid-cols-3 gap-2 text-center">
+                                    <div class="bg-emerald-50 p-3 rounded">
+                                        <p class="text-xs text-gray-600">Sent to</p>
+                                        <p class="font-bold text-emerald-600">1 customer</p>
+                                    </div>
+                                    <div class="bg-emerald-50 p-3 rounded">
+                                        <p class="text-xs text-gray-600">Confidence</p>
+                                        <p class="font-bold text-emerald-600">92%</p>
+                                    </div>
+                                    <div class="bg-emerald-50 p-3 rounded">
+                                        <p class="text-xs text-gray-600">Status</p>
+                                        <p class="font-bold text-emerald-600">Delivered</p>
+                                    </div>
+                                </div>
+                            </div>
+                        `
+                    },
+                    {
+                        num: 4,
+                        title: "Order Placed",
+                        content: `
+                            <div class="space-y-4">
+                                <div class="bg-gradient-to-br from-indigo-50 to-indigo-100 p-6 rounded-lg">
+                                    <div class="flex items-center justify-between mb-4">
+                                        <h3 class="font-bold text-gray-900">Order #ORD-2502-1847</h3>
+                                        <span class="bg-emerald-500 text-white px-3 py-1 rounded-full text-xs font-bold">CONFIRMED</span>
+                                    </div>
+                                    <div class="space-y-3 text-sm">
+                                        <div class="flex justify-between border-b pb-2">
+                                            <span class="text-gray-700">Premium Skincare Set (x1)</span>
+                                            <span class="font-bold">₹2,499</span>
+                                        </div>
+                                        <div class="flex justify-between border-b pb-2">
+                                            <span class="text-gray-700">Discount (30%)</span>
+                                            <span class="font-bold text-emerald-600">-₹750</span>
+                                        </div>
+                                        <div class="flex justify-between text-lg font-bold">
+                                            <span>Total</span>
+                                            <span class="text-indigo-600">₹1,749</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        `
+                    },
+                    {
+                        num: 5,
+                        title: "Payment Confirmed",
+                        content: `
+                            <div class="space-y-4">
+                                <div class="bg-gradient-to-r from-emerald-500 to-emerald-600 text-white p-6 rounded-lg">
+                                    <h3 class="font-bold mb-2">✓ Payment Successful</h3>
+                                    <p class="text-sm text-emerald-100 mb-4">Order #ORD-2502-1847</p>
+                                    <div class="bg-white/10 p-4 rounded text-sm space-y-2">
+                                        <div class="flex justify-between"><span>Amount</span><span class="font-bold">₹1,749</span></div>
+                                        <div class="flex justify-between"><span>Method</span><span class="font-bold">Google Pay</span></div>
+                                        <div class="flex justify-between"><span>Confirmation</span><span class="font-bold">2:41 PM</span></div>
+                                    </div>
+                                </div>
+                                <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded text-sm text-gray-700">
+                                    <p>✓ Receipt sent to customer</p>
+                                    <p>✓ Notification sent to warehouse</p>
+                                    <p>✓ Order moved to fulfillment queue</p>
+                                </div>
+                            </div>
+                        `
+                    },
+                    {
+                        num: 6,
+                        title: "Order Being Packed",
+                        content: `
+                            <div class="space-y-4">
+                                <div class="bg-orange-50 border-l-4 border-orange-500 p-6 rounded">
+                                    <h3 class="font-bold text-gray-900 mb-4">📦 In Warehouse</h3>
+                                    <div class="space-y-3">
+                                        <div class="flex items-center gap-3">
+                                            <div class="w-8 h-8 bg-orange-500 text-white rounded-full flex items-center justify-center text-sm font-bold">✓</div>
+                                            <span class="text-gray-700">Order picked from shelf</span>
+                                        </div>
+                                        <div class="flex items-center gap-3">
+                                            <div class="w-8 h-8 bg-orange-500 text-white rounded-full flex items-center justify-center text-sm font-bold">✓</div>
+                                            <span class="text-gray-700">Quality verified</span>
+                                        </div>
+                                        <div class="flex items-center gap-3">
+                                            <div class="w-8 h-8 bg-orange-400 text-white rounded-full flex items-center justify-center text-sm">→</div>
+                                            <span class="text-gray-700">Being packed with care</span>
+                                        </div>
+                                        <div class="flex items-center gap-3">
+                                            <div class="w-8 h-8 bg-gray-300 text-white rounded-full flex items-center justify-center text-sm">4</div>
+                                            <span class="text-gray-500">Ready for shipment</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="text-center text-sm text-gray-600">Estimated ready in 2 hours</div>
+                            </div>
+                        `
+                    },
+                    {
+                        num: 7,
+                        title: "Shipped & Delivered",
+                        content: `
+                            <div class="space-y-4">
+                                <div class="bg-gradient-to-r from-green-500 to-emerald-600 text-white p-6 rounded-lg">
+                                    <h3 class="font-bold mb-4">🚚 Order Delivered!</h3>
+                                    <div class="space-y-3">
+                                        <div class="flex items-center gap-3">
+                                            <div class="w-8 h-8 bg-white/30 rounded-full flex items-center justify-center">📦</div>
+                                            <div>
+                                                <p class="text-sm font-bold">Shipped on Feb 19, 10:30 AM</p>
+                                                <p class="text-sm text-emerald-100">Tracking: TRK-2502-9847</p>
+                                            </div>
+                                        </div>
+                                        <div class="flex items-center gap-3">
+                                            <div class="w-8 h-8 bg-white/30 rounded-full flex items-center justify-center">📍</div>
+                                            <div>
+                                                <p class="text-sm font-bold">Delivered on Feb 20, 5:15 PM</p>
+                                                <p class="text-sm text-emerald-100">Priya Sharma's residence, Mumbai</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bg-emerald-50 p-4 rounded text-sm">
+                                    <p class="font-bold text-emerald-700 mb-2">✓ Order Complete</p>
+                                    <p class="text-gray-700">Customer notified, review request sent</p>
+                                </div>
+                            </div>
+                        `
+                    },
+                    {
+                        num: 8,
+                        title: "Analytics Dashboard",
+                        content: `
+                            <div class="space-y-4">
+                                <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                                    <div class="bg-gradient-to-br from-emerald-50 to-emerald-100 p-4 rounded">
+                                        <p class="text-xs text-gray-600 mb-1">Revenue</p>
+                                        <p class="text-2xl font-bold text-emerald-600">₹1,749</p>
+                                    </div>
+                                    <div class="bg-gradient-to-br from-blue-50 to-blue-100 p-4 rounded">
+                                        <p class="text-xs text-gray-600 mb-1">Conversion</p>
+                                        <p class="text-2xl font-bold text-blue-600">100%</p>
+                                    </div>
+                                    <div class="bg-gradient-to-br from-purple-50 to-purple-100 p-4 rounded">
+                                        <p class="text-xs text-gray-600 mb-1">Days to Deliver</p>
+                                        <p class="text-2xl font-bold text-purple-600">2</p>
+                                    </div>
+                                    <div class="bg-gradient-to-br from-orange-50 to-orange-100 p-4 rounded">
+                                        <p class="text-xs text-gray-600 mb-1">Satisfaction</p>
+                                        <p class="text-2xl font-bold text-orange-600">5⭐</p>
+                                    </div>
+                                </div>
+                                <div class="bg-white border border-gray-200 p-4 rounded">
+                                    <h4 class="font-bold text-gray-900 mb-3">Journey Metrics</h4>
+                                    <ul class="space-y-2 text-sm text-gray-700">
+                                        <li>✓ Initial message to order: 7 minutes</li>
+                                        <li>✓ Recommendation acceptance rate: 100%</li>
+                                        <li>✓ Payment processing: Instant</li>
+                                        <li>✓ Fulfillment: Same-day dispatch</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        `
+                    }
+                ]
+            },
+            campaign: {
+                title: "📢 Campaign Execution Journey",
+                color: "blue",
+                steps: [
+                    {
+                        num: 1,
+                        title: "Customer Segment Created",
+                        content: `
+                            <div class="space-y-4">
+                                <div class="bg-gradient-to-br from-blue-50 to-indigo-50 p-6 rounded-lg">
+                                    <h3 class="font-bold text-gray-900 mb-4">Target Audience Selected</h3>
+                                    <div class="space-y-3">
+                                        <div class="flex items-center justify-between p-3 bg-white rounded border border-gray-200">
+                                            <span class="text-gray-700">Segment: Premium Beauty</span>
+                                            <span class="font-bold text-blue-600">2,847 customers</span>
+                                        </div>
+                                        <div class="text-sm text-gray-600 space-y-1">
+                                            <p>✓ Purchased 2+ times in last 30 days</p>
+                                            <p>✓ Total spend > ₹5,000</p>
+                                            <p>✓ Age: 25-45 years</p>
+                                            <p>✓ Location: Metro cities</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        `
+                    },
+                    {
+                        num: 2,
+                        title: "Message Design & Creation",
+                        content: `
+                            <div class="space-y-4">
+                                <div class="bg-white border border-gray-300 p-6 rounded-lg shadow-md">
+                                    <h4 class="font-bold text-gray-900 mb-3">Preview Message</h4>
+                                    <div class="bg-gray-100 p-4 rounded text-sm mb-4 font-mono">
+                                        <p class="text-blue-600 mb-2">Hi {customer_name}! 👋</p>
+                                        <p class="mb-2">Exclusive offer just for you!</p>
+                                        <p class="mb-2">🎁 Get 40% off on our NEW Advanced Hydrating Serum</p>
+                                        <p class="text-blue-600">Limited time: Valid till Feb 28</p>
+                                    </div>
+                                    <div class="flex gap-3">
+                                        <button class="px-4 py-2 bg-blue-600 text-white rounded text-sm font-bold">Shop Now</button>
+                                        <button class="px-4 py-2 bg-gray-200 text-gray-700 rounded text-sm font-bold">Learn More</button>
+                                    </div>
+                                </div>
+                            </div>
+                        `
+                    },
+                    {
+                        num: 3,
+                        title: "Spam Score & Approval",
+                        content: `
+                            <div class="space-y-4">
+                                <div class="bg-gradient-to-r from-emerald-500 to-green-600 text-white p-6 rounded-lg">
+                                    <h3 class="font-bold mb-2">✓ Message Approved</h3>
+                                    <div class="bg-white/10 p-4 rounded text-sm space-y-2 mb-4">
+                                        <div class="flex justify-between"><span>Spam Score</span><span class="font-bold">2.3/100</span></div>
+                                        <div class="flex justify-between"><span>Status</span><span class="font-bold">SAFE</span></div>
+                                        <div class="flex justify-between"><span>WhatsApp Compliant</span><span class="font-bold">Yes</span></div>
+                                    </div>
+                                </div>
+                                <div class="bg-emerald-50 border-l-4 border-emerald-500 p-4 rounded">
+                                    <p class="text-sm text-gray-700">✓ Uses approved template</p>
+                                    <p class="text-sm text-gray-700">✓ Includes unsubscribe option</p>
+                                    <p class="text-sm text-gray-700">✓ Personalized content detected</p>
+                                </div>
+                            </div>
+                        `
+                    },
+                    {
+                        num: 4,
+                        title: "Mobile Preview",
+                        content: `
+                            <div class="space-y-4">
+                                <div class="flex justify-center">
+                                    <div class="w-64 bg-gray-200 rounded-3xl shadow-lg overflow-hidden border-8 border-gray-900">
+                                        <div class="bg-white p-4">
+                                            <div class="text-xs text-gray-500 mb-2">WhatsApp</div>
+                                            <div class="bg-gray-100 rounded p-3">
+                                                <p class="text-xs font-bold text-gray-700 mb-2">Premium Beauty</p>
+                                                <div class="bg-blue-100 rounded p-2 mb-2 text-xs">
+                                                    <p class="text-gray-800">Hi Priya! 👋</p>
+                                                    <p class="text-gray-800">Exclusive offer just for you!</p>
+                                                    <p class="text-gray-800 mt-2">🎁 Get 40% off on our NEW Advanced Hydrating Serum</p>
+                                                </div>
+                                                <button class="w-full bg-blue-600 text-white text-xs py-2 rounded font-bold">Shop Now</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        `
+                    },
+                    {
+                        num: 5,
+                        title: "Campaign Scheduled & Sent",
+                        content: `
+                            <div class="space-y-4">
+                                <div class="bg-gradient-to-r from-blue-500 to-indigo-600 text-white p-6 rounded-lg">
+                                    <h3 class="font-bold mb-4">📤 Campaign Launched</h3>
+                                    <div class="bg-white/10 p-4 rounded space-y-2 text-sm">
+                                        <div class="flex justify-between"><span>Scheduled for</span><span class="font-bold">Feb 20, 10:00 AM</span></div>
+                                        <div class="flex justify-between"><span>Recipients</span><span class="font-bold">2,847 customers</span></div>
+                                        <div class="flex justify-between"><span>Status</span><span class="font-bold">SENDING</span></div>
+                                        <div class="flex justify-between"><span>Progress</span><span class="font-bold">847 sent (30%)</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        `
+                    },
+                    {
+                        num: 6,
+                        title: "Campaign Delivery Complete",
+                        content: `
+                            <div class="space-y-4">
+                                <div class="grid grid-cols-3 gap-3">
+                                    <div class="bg-gradient-to-br from-blue-50 to-blue-100 p-4 rounded">
+                                        <p class="text-xs text-gray-600">Total Sent</p>
+                                        <p class="text-2xl font-bold text-blue-600">2,847</p>
+                                    </div>
+                                    <div class="bg-gradient-to-br from-emerald-50 to-emerald-100 p-4 rounded">
+                                        <p class="text-xs text-gray-600">Delivered</p>
+                                        <p class="text-2xl font-bold text-emerald-600">2,743</p>
+                                    </div>
+                                    <div class="bg-gradient-to-br from-orange-50 to-orange-100 p-4 rounded">
+                                        <p class="text-xs text-gray-600">Failed</p>
+                                        <p class="text-2xl font-bold text-orange-600">104</p>
+                                    </div>
+                                </div>
+                                <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded text-sm">
+                                    <p class="text-gray-700">✓ All messages delivered within 2 minutes</p>
+                                    <p class="text-gray-700">✓ Delivery rate: 96.3%</p>
+                                </div>
+                            </div>
+                        `
+                    },
+                    {
+                        num: 7,
+                        title: "Customer Responses & Engagement",
+                        content: `
+                            <div class="space-y-4">
+                                <div class="grid grid-cols-3 gap-3">
+                                    <div class="bg-gradient-to-br from-purple-50 to-purple-100 p-4 rounded">
+                                        <p class="text-xs text-gray-600">Responses</p>
+                                        <p class="text-2xl font-bold text-purple-600">847</p>
+                                    </div>
+                                    <div class="bg-gradient-to-br from-pink-50 to-pink-100 p-4 rounded">
+                                        <p class="text-xs text-gray-600">Response Rate</p>
+                                        <p class="text-2xl font-bold text-pink-600">30.8%</p>
+                                    </div>
+                                    <div class="bg-gradient-to-br from-cyan-50 to-cyan-100 p-4 rounded">
+                                        <p class="text-xs text-gray-600">Clicks</p>
+                                        <p class="text-2xl font-bold text-cyan-600">1,203</p>
+                                    </div>
+                                </div>
+                                <div class="bg-white border border-gray-200 p-4 rounded">
+                                    <h4 class="font-bold text-gray-900 mb-2">Top Responses</h4>
+                                    <ul class="space-y-1 text-sm text-gray-700">
+                                        <li>🛍️ "Shop Now" clicks: 623</li>
+                                        <li>❓ Inquiry messages: 156</li>
+                                        <li>💬 "Tell me more": 68</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        `
+                    },
+                    {
+                        num: 8,
+                        title: "Campaign Analytics & ROI",
+                        content: `
+                            <div class="space-y-4">
+                                <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                                    <div class="bg-gradient-to-br from-emerald-50 to-emerald-100 p-4 rounded">
+                                        <p class="text-xs text-gray-600">Conversions</p>
+                                        <p class="text-2xl font-bold text-emerald-600">420</p>
+                                    </div>
+                                    <div class="bg-gradient-to-br from-green-50 to-green-100 p-4 rounded">
+                                        <p class="text-xs text-gray-600">Revenue</p>
+                                        <p class="text-2xl font-bold text-green-600">₹20.4L</p>
+                                    </div>
+                                    <div class="bg-gradient-to-br from-orange-50 to-orange-100 p-4 rounded">
+                                        <p class="text-xs text-gray-600">ROI</p>
+                                        <p class="text-2xl font-bold text-orange-600">420%</p>
+                                    </div>
+                                    <div class="bg-gradient-to-br from-purple-50 to-purple-100 p-4 rounded">
+                                        <p class="text-xs text-gray-600">Avg Order Value</p>
+                                        <p class="text-2xl font-bold text-purple-600">₹48.6K</p>
+                                    </div>
+                                </div>
+                                <div class="bg-gradient-to-r from-emerald-500 to-green-600 text-white p-4 rounded">
+                                    <p class="font-bold mb-2">✓ Campaign Success</p>
+                                    <p class="text-sm">Exceeded targets by 85%. Highest performing segment: Women 25-34</p>
+                                </div>
+                            </div>
+                        `
+                    }
+                ]
+            },
+            team: {
+                title: "👥 Team Workflow Journey",
+                color: "purple",
+                steps: [
+                    {
+                        num: 1,
+                        title: "Team Created & Members Added",
+                        content: `
+                            <div class="space-y-4">
+                                <div class="bg-gradient-to-br from-purple-50 to-purple-100 p-6 rounded-lg">
+                                    <h3 class="font-bold text-gray-900 mb-4">Beauty Store Support Team</h3>
+                                    <div class="grid grid-cols-2 gap-3">
+                                        <div class="bg-white p-4 rounded border border-purple-200">
+                                            <p class="text-xs text-gray-600 mb-1">Team Members</p>
+                                            <p class="text-2xl font-bold text-purple-600">4</p>
+                                        </div>
+                                        <div class="bg-white p-4 rounded border border-purple-200">
+                                            <p class="text-xs text-gray-600 mb-1">Active Now</p>
+                                            <p class="text-2xl font-bold text-emerald-600">3</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bg-white border border-gray-200 p-4 rounded">
+                                    <h4 class="font-bold text-gray-900 mb-3">Team Members</h4>
+                                    <ul class="space-y-2 text-sm">
+                                        <li class="flex justify-between items-center"><span>Ananya Patel</span><span class="bg-emerald-100 text-emerald-700 px-2 py-1 rounded text-xs">Manager</span></li>
+                                        <li class="flex justify-between items-center"><span>Rahul Kumar</span><span class="bg-blue-100 text-blue-700 px-2 py-1 rounded text-xs">Agent</span></li>
+                                        <li class="flex justify-between items-center"><span>Shruti Singh</span><span class="bg-blue-100 text-blue-700 px-2 py-1 rounded text-xs">Agent</span></li>
+                                        <li class="flex justify-between items-center"><span>Vikram Sharma</span><span class="bg-gray-100 text-gray-700 px-2 py-1 rounded text-xs">Offline</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        `
+                    },
+                    {
+                        num: 2,
+                        title: "Permissions & Roles Configured",
+                        content: `
+                            <div class="space-y-4">
+                                <div class="bg-white border border-gray-200 p-4 rounded">
+                                    <h4 class="font-bold text-gray-900 mb-3">Role Permissions Matrix</h4>
+                                    <div class="overflow-x-auto">
+                                        <table class="w-full text-sm">
+                                            <thead>
+                                                <tr class="border-b">
+                                                    <th class="text-left py-2 px-2">Permission</th>
+                                                    <th class="text-center py-2 px-2">Manager</th>
+                                                    <th class="text-center py-2 px-2">Agent</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr class="border-b"><td class="py-2 px-2">Reply Messages</td><td class="text-center">✓</td><td class="text-center">✓</td></tr>
+                                                <tr class="border-b"><td class="py-2 px-2">View Reports</td><td class="text-center">✓</td><td class="text-center">✓</td></tr>
+                                                <tr class="border-b"><td class="py-2 px-2">Assign Orders</td><td class="text-center">✓</td><td class="text-center">-</td></tr>
+                                                <tr class="border-b"><td class="py-2 px-2">Add Team Members</td><td class="text-center">✓</td><td class="text-center">-</td></tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        `
+                    },
+                    {
+                        num: 3,
+                        title: "Shared Inbox Management",
+                        content: `
+                            <div class="space-y-4">
+                                <div class="bg-gradient-to-br from-blue-50 to-indigo-50 p-6 rounded-lg">
+                                    <h3 class="font-bold text-gray-900 mb-4">📬 Inbox Status</h3>
+                                    <div class="grid grid-cols-3 gap-3 mb-4">
+                                        <div class="bg-white p-3 rounded border border-blue-200">
+                                            <p class="text-xs text-gray-600">Total</p>
+                                            <p class="text-xl font-bold text-blue-600">48</p>
+                                        </div>
+                                        <div class="bg-white p-3 rounded border border-orange-200">
+                                            <p class="text-xs text-gray-600">Pending</p>
+                                            <p class="text-xl font-bold text-orange-600">12</p>
+                                        </div>
+                                        <div class="bg-white p-3 rounded border border-emerald-200">
+                                            <p class="text-xs text-gray-600">Resolved</p>
+                                            <p class="text-xl font-bold text-emerald-600">36</p>
+                                        </div>
+                                    </div>
+                                    <div class="space-y-2 text-sm">
+                                        <div class="flex justify-between"><span class="text-gray-700">Avg response time</span><span class="font-bold">3 min</span></div>
+                                        <div class="flex justify-between"><span class="text-gray-700">Avg resolution time</span><span class="font-bold">12 min</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        `
+                    },
+                    {
+                        num: 4,
+                        title: "Team Members Responding to Messages",
+                        content: `
+                            <div class="space-y-4">
+                                <div class="space-y-3">
+                                    <div class="bg-emerald-50 border-l-4 border-emerald-500 p-4 rounded">
+                                        <div class="flex items-start gap-3">
+                                            <div class="text-lg">👤 Ananya Patel</div>
+                                            <div class="flex-1">
+                                                <p class="font-semibold text-gray-900 text-sm">Complex order inquiry</p>
+                                                <p class="text-xs text-gray-600 mt-1">Responded in 2 min</p>
+                                                <p class="text-xs text-gray-700 mt-2">"Hi! I understand your concern about delivery timeline. Let me check our warehouse status..."</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded">
+                                        <div class="flex items-start gap-3">
+                                            <div class="text-lg">👤 Rahul Kumar</div>
+                                            <div class="flex-1">
+                                                <p class="font-semibold text-gray-900 text-sm">Product recommendation</p>
+                                                <p class="text-xs text-gray-600 mt-1">Responded in 4 min</p>
+                                                <p class="text-xs text-gray-700 mt-2">"Based on your skin type, I'd recommend our hydrating serum..."</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        `
+                    },
+                    {
+                        num: 5,
+                        title: "Manager Monitoring & Supervision",
+                        content: `
+                            <div class="space-y-4">
+                                <div class="bg-gradient-to-br from-purple-50 to-indigo-50 p-6 rounded-lg">
+                                    <h3 class="font-bold text-gray-900 mb-4">📊 Supervisor Dashboard</h3>
+                                    <div class="space-y-3">
+                                        <div class="flex items-center justify-between p-3 bg-white rounded border border-gray-200">
+                                            <span class="text-sm font-semibold text-gray-900">Ananya Patel</span>
+                                            <span class="text-sm text-emerald-600 font-bold">18 responses</span>
+                                        </div>
+                                        <div class="flex items-center justify-between p-3 bg-white rounded border border-gray-200">
+                                            <span class="text-sm font-semibold text-gray-900">Rahul Kumar</span>
+                                            <span class="text-sm text-blue-600 font-bold">14 responses</span>
+                                        </div>
+                                        <div class="flex items-center justify-between p-3 bg-white rounded border border-gray-200">
+                                            <span class="text-sm font-semibold text-gray-900">Shruti Singh</span>
+                                            <span class="text-sm text-purple-600 font-bold">16 responses</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        `
+                    },
+                    {
+                        num: 6,
+                        title: "Order Fulfillment Tracking",
+                        content: `
+                            <div class="space-y-4">
+                                <div class="bg-orange-50 border-l-4 border-orange-500 p-6 rounded">
+                                    <h3 class="font-bold text-gray-900 mb-4">📦 Active Orders</h3>
+                                    <div class="space-y-2 text-sm">
+                                        <div class="flex justify-between p-2 bg-white rounded">
+                                            <span>Orders being prepared</span>
+                                            <span class="font-bold text-orange-600">7</span>
+                                        </div>
+                                        <div class="flex justify-between p-2 bg-white rounded">
+                                            <span>Orders shipped today</span>
+                                            <span class="font-bold text-blue-600">23</span>
+                                        </div>
+                                        <div class="flex justify-between p-2 bg-white rounded">
+                                            <span>Orders delivered today</span>
+                                            <span class="font-bold text-emerald-600">18</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        `
+                    },
+                    {
+                        num: 7,
+                        title: "Team Performance Analytics",
+                        content: `
+                            <div class="space-y-4">
+                                <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                                    <div class="bg-gradient-to-br from-emerald-50 to-emerald-100 p-4 rounded">
+                                        <p class="text-xs text-gray-600">Avg Response</p>
+                                        <p class="text-2xl font-bold text-emerald-600">2.8 min</p>
+                                    </div>
+                                    <div class="bg-gradient-to-br from-blue-50 to-blue-100 p-4 rounded">
+                                        <p class="text-xs text-gray-600">Resolution Rate</p>
+                                        <p class="text-2xl font-bold text-blue-600">96%</p>
+                                    </div>
+                                    <div class="bg-gradient-to-br from-purple-50 to-purple-100 p-4 rounded">
+                                        <p class="text-xs text-gray-600">Customer Rating</p>
+                                        <p class="text-2xl font-bold text-purple-600">4.8⭐</p>
+                                    </div>
+                                    <div class="bg-gradient-to-br from-pink-50 to-pink-100 p-4 rounded">
+                                        <p class="text-xs text-gray-600">Productivity</p>
+                                        <p class="text-2xl font-bold text-pink-600">+24%</p>
+                                    </div>
+                                </div>
+                            </div>
+                        `
+                    }
+                ]
+            },
+            government: {
+                title: "🏛️ Government Notifications Journey",
+                color: "amber",
+                steps: [
+                    {
+                        num: 1,
+                        title: "Verified Notification Created",
+                        content: `
+                            <div class="space-y-4">
+                                <div class="bg-gradient-to-br from-amber-50 to-orange-50 p-6 rounded-lg">
+                                    <h3 class="font-bold text-gray-900 mb-4">📢 Create Verified Notification</h3>
+                                    <div class="space-y-3">
+                                        <div class="p-3 bg-white rounded border border-gray-200">
+                                            <p class="text-xs text-gray-600 mb-1">Title</p>
+                                            <p class="font-semibold text-gray-900">New Scholarship Program 2026</p>
+                                        </div>
+                                        <div class="p-3 bg-white rounded border border-gray-200">
+                                            <p class="text-xs text-gray-600 mb-1">Content</p>
+                                            <p class="text-sm text-gray-700">Central Government announces merit-based scholarship program for 12th pass students</p>
+                                        </div>
+                                        <div class="p-3 bg-white rounded border border-gray-200">
+                                            <p class="text-xs text-gray-600 mb-1">Verification Status</p>
+                                            <p class="text-sm text-amber-600 font-bold">✓ Government Verified</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        `
+                    },
+                    {
+                        num: 2,
+                        title: "Geo-Targeting & Audience Selection",
+                        content: `
+                            <div class="space-y-4">
+                                <div class="bg-gradient-to-br from-blue-50 to-indigo-50 p-6 rounded-lg">
+                                    <h3 class="font-bold text-gray-900 mb-4">🗺️ Target Audience</h3>
+                                    <div class="grid grid-cols-2 gap-3 mb-4">
+                                        <div class="bg-white p-4 rounded border border-blue-200">
+                                            <p class="text-xs text-gray-600">Coverage</p>
+                                            <p class="text-2xl font-bold text-blue-600">All India</p>
+                                        </div>
+                                        <div class="bg-white p-4 rounded border border-blue-200">
+                                            <p class="text-xs text-gray-600">Target Students</p>
+                                            <p class="text-2xl font-bold text-blue-600">2.5M</p>
+                                        </div>
+                                    </div>
+                                    <div class="text-sm text-gray-700 space-y-1">
+                                        <p>✓ Age group: 17-25 years</p>
+                                        <p>✓ Education: 12th pass + higher</p>
+                                        <p>✓ Income tier: All</p>
+                                    </div>
+                                </div>
+                            </div>
+                        `
+                    },
+                    {
+                        num: 3,
+                        title: "Notification Broadcast Sent",
+                        content: `
+                            <div class="space-y-4">
+                                <div class="bg-gradient-to-r from-amber-500 to-orange-600 text-white p-6 rounded-lg">
+                                    <h3 class="font-bold mb-4">📡 Broadcast in Progress</h3>
+                                    <div class="bg-white/10 p-4 rounded space-y-2 text-sm mb-4">
+                                        <div class="flex justify-between"><span>Total Target</span><span class="font-bold">2.5M students</span></div>
+                                        <div class="flex justify-between"><span>Sent So Far</span><span class="font-bold">1.8M (72%)</span></div>
+                                        <div class="flex justify-between"><span>Delivery Rate</span><span class="font-bold">98.2%</span></div>
+                                        <div class="flex justify-between"><span>Time Remaining</span><span class="font-bold">~3 minutes</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        `
+                    },
+                    {
+                        num: 4,
+                        title: "Lead Capture & Responses",
+                        content: `
+                            <div class="space-y-4">
+                                <div class="grid grid-cols-2 gap-3 mb-4">
+                                    <div class="bg-gradient-to-br from-emerald-50 to-emerald-100 p-4 rounded">
+                                        <p class="text-xs text-gray-600">Total Responses</p>
+                                        <p class="text-2xl font-bold text-emerald-600">847.5K</p>
+                                    </div>
+                                    <div class="bg-gradient-to-br from-blue-50 to-blue-100 p-4 rounded">
+                                        <p class="text-xs text-gray-600">Response Rate</p>
+                                        <p class="text-2xl font-bold text-blue-600">33.9%</p>
+                                    </div>
+                                </div>
+                                <div class="bg-white border border-gray-200 p-4 rounded">
+                                    <h4 class="font-bold text-gray-900 mb-3">Response Types</h4>
+                                    <ul class="space-y-1 text-sm text-gray-700">
+                                        <li>✓ "Interested" clicks: 523.4K</li>
+                                        <li>✓ "Tell me more" clicks: 324.1K</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        `
+                    },
+                    {
+                        num: 5,
+                        title: "Auto Lead Scoring & Qualification",
+                        content: `
+                            <div class="space-y-4">
+                                <div class="bg-gradient-to-br from-purple-50 to-indigo-50 p-6 rounded-lg">
+                                    <h3 class="font-bold text-gray-900 mb-4">🎯 Lead Qualification</h3>
+                                    <div class="space-y-3">
+                                        <div class="p-4 bg-white rounded border-l-4 border-emerald-500">
+                                            <div class="flex justify-between items-center">
+                                                <span class="font-bold text-gray-900">High Priority Leads</span>
+                                                <span class="text-2xl font-bold text-emerald-600">342.3K</span>
+                                            </div>
+                                            <p class="text-xs text-gray-600 mt-1">Engaged, complete profile, eligible</p>
+                                        </div>
+                                        <div class="p-4 bg-white rounded border-l-4 border-orange-500">
+                                            <div class="flex justify-between items-center">
+                                                <span class="font-bold text-gray-900">Medium Priority</span>
+                                                <span class="text-2xl font-bold text-orange-600">405.2K</span>
+                                            </div>
+                                            <p class="text-xs text-gray-600 mt-1">Interested, needs follow-up</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        `
+                    },
+                    {
+                        num: 6,
+                        title: "Nurture Campaign Sequences",
+                        content: `
+                            <div class="space-y-4">
+                                <div class="bg-gradient-to-br from-pink-50 to-rose-50 p-6 rounded-lg">
+                                    <h3 class="font-bold text-gray-900 mb-4">📧 Nurture Campaigns Active</h3>
+                                    <div class="space-y-3">
+                                        <div class="p-3 bg-white rounded border border-gray-200">
+                                            <div class="flex justify-between items-center">
+                                                <span class="font-semibold text-gray-900">Eligibility Verification Sequence</span>
+                                                <span class="bg-blue-100 text-blue-700 px-2 py-1 rounded text-xs font-bold">Day 1-3</span>
+                                            </div>
+                                        </div>
+                                        <div class="p-3 bg-white rounded border border-gray-200">
+                                            <div class="flex justify-between items-center">
+                                                <span class="font-semibold text-gray-900">Document Collection Reminders</span>
+                                                <span class="bg-purple-100 text-purple-700 px-2 py-1 rounded text-xs font-bold">Day 4-7</span>
+                                            </div>
+                                        </div>
+                                        <div class="p-3 bg-white rounded border border-gray-200">
+                                            <div class="flex justify-between items-center">
+                                                <span class="font-semibold text-gray-900">Application Submission Help</span>
+                                                <span class="bg-emerald-100 text-emerald-700 px-2 py-1 rounded text-xs font-bold">Day 8-14</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        `
+                    },
+                    {
+                        num: 7,
+                        title: "Conversion & Enrollment Tracking",
+                        content: `
+                            <div class="space-y-4">
+                                <div class="grid grid-cols-2 gap-3">
+                                    <div class="bg-gradient-to-br from-emerald-50 to-emerald-100 p-4 rounded">
+                                        <p class="text-xs text-gray-600">Applications Submitted</p>
+                                        <p class="text-2xl font-bold text-emerald-600">126.3K</p>
+                                    </div>
+                                    <div class="bg-gradient-to-br from-blue-50 to-blue-100 p-4 rounded">
+                                        <p class="text-xs text-gray-600">Approved</p>
+                                        <p class="text-2xl font-bold text-blue-600">127K</p>
+                                    </div>
+                                </div>
+                                <div class="bg-white border border-gray-200 p-4 rounded">
+                                    <h4 class="font-bold text-gray-900 mb-3">Conversion Metrics</h4>
+                                    <ul class="space-y-1 text-sm text-gray-700">
+                                        <li>Lead to Application: 14.9%</li>
+                                        <li>Application Approval: 100.5%</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        `
+                    },
+                    {
+                        num: 8,
+                        title: "Results & Impact Analytics",
+                        content: `
+                            <div class="space-y-4">
+                                <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                                    <div class="bg-gradient-to-br from-emerald-50 to-emerald-100 p-4 rounded">
+                                        <p class="text-xs text-gray-600">Total Enrolled</p>
+                                        <p class="text-2xl font-bold text-emerald-600">127K</p>
+                                    </div>
+                                    <div class="bg-gradient-to-br from-blue-50 to-blue-100 p-4 rounded">
+                                        <p class="text-xs text-gray-600">Conversion Rate</p>
+                                        <p class="text-2xl font-bold text-blue-600">5%</p>
+                                    </div>
+                                    <div class="bg-gradient-to-br from-purple-50 to-purple-100 p-4 rounded">
+                                        <p class="text-xs text-gray-600">Cost per Lead</p>
+                                        <p class="text-2xl font-bold text-purple-600">₹18</p>
+                                    </div>
+                                    <div class="bg-gradient-to-br from-orange-50 to-orange-100 p-4 rounded">
+                                        <p class="text-xs text-gray-600">Lives Impacted</p>
+                                        <p class="text-2xl font-bold text-orange-600">127K</p>
+                                    </div>
+                                </div>
+                                <div class="bg-gradient-to-r from-amber-500 to-orange-600 text-white p-4 rounded">
+                                    <p class="font-bold mb-1">✓ Program Success</p>
+                                    <p class="text-sm">Successfully onboarded 127,000 students to scholarship program</p>
+                                </div>
+                            </div>
+                        `
+                    }
+                ]
+            }
+        };
+
+        let currentJourney = null;
+        let currentStep = 0;
+
+        function startJourney(journey) {
+            currentJourney = journey;
+            currentStep = 0;
+            const flow = flows[journey];
+            
+            document.getElementById('journeySelector').classList.add('hidden');
+            document.getElementById('flowContainer').classList.remove('hidden');
+            document.getElementById('journeyTitle').textContent = flow.title;
+            
+            renderStep();
+            renderProgress();
+        }
+
+        function closeFlow() {
+            document.getElementById('journeySelector').classList.remove('hidden');
+            document.getElementById('flowContainer').classList.add('hidden');
+            currentJourney = null;
+            currentStep = 0;
+        }
+
+        function nextStep() {
+            const flow = flows[currentJourney];
+            if (currentStep < flow.steps.length - 1) {
+                currentStep++;
+                renderStep();
+                renderProgress();
+            }
+        }
+
+        function previousStep() {
+            if (currentStep > 0) {
+                currentStep--;
+                renderStep();
+                renderProgress();
+            }
+        }
+
+        function goToStep(index) {
+            currentStep = index;
+            renderStep();
+            renderProgress();
+        }
+
+        function renderStep() {
+            const flow = flows[currentJourney];
+            const step = flow.steps[currentStep];
+            
+            let html = `<h3 class="text-2xl font-bold text-gray-900 mb-2">${step.title}</h3>`;
+            html += step.content;
+            
+            document.getElementById('flowContent').innerHTML = html;
+            
+            document.getElementById('prevBtn').disabled = currentStep === 0;
+            document.getElementById('nextBtn').disabled = currentStep === flow.steps.length - 1;
+            
+            window.scrollTo(0, 0);
+        }
+
+        function renderProgress() {
+            const flow = flows[currentJourney];
+            const totalSteps = flow.steps.length;
+            
+            let progressHtml = '';
+            for (let i = 0; i < totalSteps; i++) {
+                const isActive = i === currentStep;
+                const isCompleted = i < currentStep;
+                
+                let className = 'w-10 h-10 rounded-full font-bold flex items-center justify-center cursor-pointer transition';
+                if (isActive) className += ' bg-yellow-400 text-gray-900 shadow-lg';
+                else if (isCompleted) className += ' bg-emerald-500 text-white';
+                else className += ' bg-gray-300 text-gray-600';
+                
+                progressHtml += `<button onclick="goToStep(${i})" class="${className}">${i + 1}</button>`;
+                
+                if (i < totalSteps - 1) {
+                    progressHtml += '<div class="flex-1 h-1 ' + (isCompleted ? 'bg-emerald-500' : 'bg-gray-300') + '"></div>';
+                }
+            }
+            
+            document.getElementById('progressSteps').innerHTML = progressHtml;
+            
+            let jumpersHtml = '';
+            for (let i = 0; i < totalSteps; i++) {
+                jumpersHtml += `<button onclick="goToStep(${i})" class="px-3 py-1 bg-gray-300 hover:bg-gray-400 text-gray-900 rounded text-sm font-semibold">${i + 1}</button>`;
+            }
+            document.getElementById('stepJumpers').innerHTML = jumpersHtml;
+        }
+    </script>
+</body>
+</html>
