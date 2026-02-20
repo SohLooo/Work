@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Government & Enterprise Use Cases</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50">
+    <div class="flex h-screen">
+        <!-- Sidebar -->
+        <div class="w-64 bg-white border-r border-gray-200 flex flex-col">
+            <div class="p-6 border-b border-gray-200">
+                <h1 class="text-2xl font-bold text-blue-600">Government Portal</h1>
+                <p class="text-xs text-gray-600 mt-1">Citizens Portal</p>
+            </div>
+            <nav class="flex-1 p-4 space-y-2">
+                <div class="px-4 py-2 bg-blue-50 text-blue-700 rounded-lg font-semibold">📢 Notifications</div>
+                <a href="01-smart-inbox.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-lg cursor-pointer">📧 Inbox</a>
+                <a href="02-customer-segmentation.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-lg cursor-pointer">👥 Contacts</a>
+                <a href="03-campaign-creation.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-lg cursor-pointer">📤 Campaigns</a>
+                <a href="06-analytics.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-lg cursor-pointer">📊 Analytics</a>
+            </nav>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex-1 flex flex-col">
+            <!-- Header -->
+            <div class="bg-white border-b border-gray-200 px-8 py-4">
+                <h2 class="text-2xl font-bold text-gray-900">Official Notifications</h2>
+                <p class="text-sm text-gray-600 mt-1">Receive timely government updates via WhatsApp</p>
+            </div>
+
+            <!-- Tabs -->
+            <div class="bg-white border-b border-gray-200 px-8 py-3 flex gap-6">
+                <button class="border-b-2 border-blue-600 text-blue-600 font-semibold pb-2">✓ Verified Messages (24)</button>
+                <button class="text-gray-600 hover:text-gray-900 pb-2">📬 Pending (3)</button>
+                <button class="text-gray-600 hover:text-gray-900 pb-2">📊 Campaign History</button>
+            </div>
+
+            <!-- Content -->
+            <div class="flex-1 overflow-y-auto bg-gray-50 p-8">
+                <div class="max-w-4xl mx-auto space-y-6">
+                    <!-- Notification 1 - Exam Results -->
+                    <div class="bg-white rounded-lg border border-gray-200 p-6 shadow-sm hover:shadow-md transition">
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="flex items-start gap-4 flex-1">
+                                <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center text-lg font-bold">📋</div>
+                                <div>
+                                    <div class="flex items-center gap-2">
+                                        <h3 class="font-bold text-gray-900">Civil Service Exam Results</h3>
+                                        <span class="flex items-center gap-1 px-2 py-1 bg-blue-100 text-blue-700 text-xs rounded font-semibold">
+                                            ✓ Verified Government
+                                        </span>
+                                    </div>
+                                    <p class="text-sm text-gray-600 mt-1">Department of Civil Services</p>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-sm text-gray-600">Sent Today</p>
+                                <p class="text-xs text-gray-500">9:30 AM</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded mb-4">
+                            <p class="font-semibold text-gray-900 text-sm mb-2">📲 WhatsApp Message:</p>
+                            <p class="text-sm text-gray-800">"Dear Applicant, your results for the Civil Service Examination 2026 are now available. Please log in to check your scores: [official link]. This is an official notification from the Department."</p>
+                        </div>
+
+                        <div class="grid grid-cols-3 gap-4">
+                            <div class="p-3 bg-gray-50 rounded-lg">
+                                <p class="text-xs text-gray-600">Recipients</p>
+                                <p class="text-lg font-bold text-gray-900">45,230</p>
+                            </div>
+                            <div class="p-3 bg-gray-50 rounded-lg">
+                                <p class="text-xs text-gray-600">Delivery Rate</p>
+                                <p class="text-lg font-bold text-green-600">99.2%</p>
+                            </div>
+                            <div class="p-3 bg-gray-50 rounded-lg">
+                                <p class="text-xs text-gray-600">Open Rate</p>
+                                <p class="text-lg font-bold text-blue-600">87.4%</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Notification 2 - License Renewal -->
+                    <div class="bg-white rounded-lg border border-gray-200 p-6 shadow-sm hover:shadow-md transition">
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="flex items-start gap-4 flex-1">
+                                <div class="w-12 h-12 bg-purple-100 text-purple-600 rounded-lg flex items-center justify-center text-lg font-bold">📜</div>
+                                <div>
+                                    <div class="flex items-center gap-2">
+                                        <h3 class="font-bold text-gray-900">Driver License Renewal Reminder</h3>
+                                        <span class="flex items-center gap-1 px-2 py-1 bg-blue-100 text-blue-700 text-xs rounded font-semibold">
+                                            ✓ Verified Government
+                                        </span>
+                                    </div>
+                                    <p class="text-sm text-gray-600 mt-1">Department of Transportation</p>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-sm text-gray-600">Sent Yesterday</p>
+                                <p class="text-xs text-gray-500">2:15 PM</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-purple-50 border-l-4 border-purple-500 p-4 rounded mb-4">
+                            <p class="font-semibold text-gray-900 text-sm mb-2">📲 WhatsApp Message:</p>
+                            <p class="text-sm text-gray-800">"Your driver license expires on March 15, 2026. Renew online to avoid penalties. Appointment slots available: [link]. Official message from DMV."</p>
+                        </div>
+
+                        <div class="grid grid-cols-3 gap-4">
+                            <div class="p-3 bg-gray-50 rounded-lg">
+                                <p class="text-xs text-gray-600">Recipients</p>
+                                <p class="text-lg font-bold text-gray-900">128,950</p>
+                            </div>
+                            <div class="p-3 bg-gray-50 rounded-lg">
+                                <p class="text-xs text-gray-600">Delivery Rate</p>
+                                <p class="text-lg font-bold text-green-600">98.7%</p>
+                            </div>
+                            <div class="p-3 bg-gray-50 rounded-lg">
+                                <p class="text-xs text-gray-600">Open Rate</p>
+                                <p class="text-lg font-bold text-blue-600">76.2%</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Notification 3 - Tax Return -->
+                    <div class="bg-white rounded-lg border border-gray-200 p-6 shadow-sm hover:shadow-md transition">
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="flex items-start gap-4 flex-1">
+                                <div class="w-12 h-12 bg-green-100 text-green-600 rounded-lg flex items-center justify-center text-lg font-bold">💰</div>
+                                <div>
+                                    <div class="flex items-center gap-2">
+                                        <h3 class="font-bold text-gray-900">Tax Refund Status Update</h3>
+                                        <span class="flex items-center gap-1 px-2 py-1 bg-blue-100 text-blue-700 text-xs rounded font-semibold">
+                                            ✓ Verified Government
+                                        </span>
+                                    </div>
+                                    <p class="text-sm text-gray-600 mt-1">Internal Revenue Service</p>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-sm text-gray-600">Sent 3 days ago</p>
+                                <p class="text-xs text-gray-500">10:45 AM</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-green-50 border-l-4 border-green-500 p-4 rounded mb-4">
+                            <p class="font-semibold text-gray-900 text-sm mb-2">📲 WhatsApp Message:</p>
+                            <p class="text-sm text-gray-800">"Great news! Your tax refund of $1,250 has been approved and will be deposited to your account within 5-7 business days. Check status: [link]"</p>
+                        </div>
+
+                        <div class="grid grid-cols-3 gap-4">
+                            <div class="p-3 bg-gray-50 rounded-lg">
+                                <p class="text-xs text-gray-600">Recipients</p>
+                                <p class="text-lg font-bold text-gray-900">234,567</p>
+                            </div>
+                            <div class="p-3 bg-gray-50 rounded-lg">
+                                <p class="text-xs text-gray-600">Delivery Rate</p>
+                                <p class="text-lg font-bold text-green-600">99.1%</p>
+                            </div>
+                            <div class="p-3 bg-gray-50 rounded-lg">
+                                <p class="text-xs text-gray-600">Open Rate</p>
+                                <p class="text-lg font-bold text-blue-600">94.8%</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Second Section: FMCG Brand Promotions -->
+    <div class="hidden">
+        <div class="flex h-screen">
+            <!-- Sidebar -->
+            <div class="w-64 bg-white border-r border-gray-200 flex flex-col">
+                <div class="p-6 border-b border-gray-200">
+                    <h1 class="text-2xl font-bold text-orange-600">Brand Hub</h1>
+                    <p class="text-xs text-gray-600 mt-1">FMCG Marketing</p>
+                </div>
+                <nav class="flex-1 p-4 space-y-2">
+                    <div class="px-4 py-2 bg-orange-50 text-orange-700 rounded-lg font-semibold">🎯 Campaigns</div>
+                    <div class="px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-lg cursor-pointer">📍 Geo Targeting</div>
+                    <div class="px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-lg cursor-pointer">👥 Leads</div>
+                    <div class="px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-lg cursor-pointer">📊 Analytics</div>
+                </nav>
+            </div>
+
+            <!-- Main Content -->
+            <div class="flex-1 flex flex-col">
+                <!-- Header -->
+                <div class="bg-white border-b border-gray-200 px-8 py-4">
+                    <h2 class="text-2xl font-bold text-gray-900">Geo-Targeted Promotions</h2>
+                    <p class="text-sm text-gray-600 mt-1">Location-specific campaigns for maximum engagement</p>
+                </div>
+
+                <!-- Content -->
+                <div class="flex-1 overflow-y-auto bg-gray-50 p-8">
+                    <div class="max-w-4xl mx-auto space-y-6">
+                        <!-- Campaign 1 - California -->
+                        <div class="bg-white rounded-lg border border-gray-200 p-6">
+                            <div class="flex items-start justify-between mb-4">
+                                <div>
+                                    <h3 class="font-bold text-gray-900 text-lg">California Spring Festival Sale</h3>
+                                    <p class="text-sm text-gray-600 mt-1">📍 California (San Francisco, LA, San Diego)</p>
+                                </div>
+                                <span class="px-3 py-1 bg-green-100 text-green-700 text-sm rounded font-semibold">Active</span>
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-4 mb-4">
+                                <div>
+                                    <p class="text-sm text-gray-600 mb-2">🎯 Targeting</p>
+                                    <ul class="text-sm text-gray-700 space-y-1">
+                                        <li>✓ Location: California</li>
+                                        <li>✓ Demographics: 25-45 years</li>
+                                        <li>✓ Interest: Home & Living</li>
+                                        <li>✓ Behavior: Recent purchases</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-gray-600 mb-2">📊 Performance</p>
+                                    <div class="space-y-1 text-sm">
+                                        <p><span class="font-bold text-gray-900">15,427</span> Contacts Reached</p>
+                                        <p><span class="font-bold text-green-600">42.3%</span> Open Rate</p>
+                                        <p><span class="font-bold text-blue-600">127</span> Leads Generated</p>
+                                        <p><span class="font-bold text-orange-600">$52,300</span> Revenue</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                                <p class="font-semibold text-blue-900 text-sm mb-2">📲 Campaign Message:</p>
+                                <p class="text-sm text-blue-800">"🌸 California Spring Festival Sale! Get 25% off on home products this weekend. Limited stock in CA stores. [Shop Now Link] - Available Feb 22-24 only!"</p>
+                            </div>
+                        </div>
+
+                        <!-- Campaign 2 - Texas -->
+                        <div class="bg-white rounded-lg border border-gray-200 p-6">
+                            <div class="flex items-start justify-between mb-4">
+                                <div>
+                                    <h3 class="font-bold text-gray-900 text-lg">Texas Summer Collection Launch</h3>
+                                    <p class="text-sm text-gray-600 mt-1">📍 Texas (Houston, Dallas, Austin)</p>
+                                </div>
+                                <span class="px-3 py-1 bg-green-100 text-green-700 text-sm rounded font-semibold">Active</span>
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-4 mb-4">
+                                <div>
+                                    <p class="text-sm text-gray-600 mb-2">🎯 Targeting</p>
+                                    <ul class="text-sm text-gray-700 space-y-1">
+                                        <li>✓ Location: Texas Metro Areas</li>
+                                        <li>✓ Demographics: All ages</li>
+                                        <li>✓ Interest: Fashion & Lifestyle</li>
+                                        <li>✓ Behavior: High engagement</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <p class="text-sm text-gray-600 mb-2">📊 Performance</p>
+                                    <div class="space-y-1 text-sm">
+                                        <p><span class="font-bold text-gray-900">22,156</span> Contacts Reached</p>
+                                        <p><span class="font-bold text-green-600">38.9%</span> Open Rate</p>
+                                        <p><span class="font-bold text-blue-600">184</span> Leads Generated</p>
+                                        <p><span class="font-bold text-orange-600">$67,800</span> Revenue</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="bg-purple-50 border border-purple-200 rounded-lg p-4">
+                                <p class="font-semibold text-purple-900 text-sm mb-2">📲 Campaign Message:</p>
+                                <p class="text-sm text-purple-800">"☀️ Hot New Summer Collection Arrived! Exclusive TX launch - 30% off on selected items. First 100 shoppers get free shipping. [Shop in Texas] #SummerStyle"</p>
+                            </div>
+                        </div>
+
+                        <!-- Lead Capture Card -->
+                        <div class="bg-gradient-to-r from-orange-50 to-red-50 rounded-lg border border-orange-200 p-6">
+                            <h3 class="font-bold text-gray-900 text-lg mb-4">🎯 Lead Capture from Promotions</h3>
+                            
+                            <div class="grid grid-cols-3 gap-4">
+                                <div class="bg-white rounded-lg p-4 border border-orange-200">
+                                    <p class="text-sm text-gray-600 font-semibold">Total Leads Generated</p>
+                                    <p class="text-3xl font-bold text-orange-600 mt-2">2,847</p>
+                                    <p class="text-xs text-gray-500 mt-1">This quarter</p>
+                                </div>
+
+                                <div class="bg-white rounded-lg p-4 border border-orange-200">
+                                    <p class="text-sm text-gray-600 font-semibold">High-Value Leads</p>
+                                    <p class="text-3xl font-bold text-green-600 mt-2">412</p>
+                                    <p class="text-xs text-gray-500 mt-1">Assigned to sales</p>
+                                </div>
+
+                                <div class="bg-white rounded-lg p-4 border border-orange-200">
+                                    <p class="text-sm text-gray-600 font-semibold">Conversion Rate</p>
+                                    <p class="text-3xl font-bold text-blue-600 mt-2">14.5%</p>
+                                    <p class="text-xs text-gray-500 mt-1">High-value leads</p>
+                                </div>
+                            </div>
+
+                            <div class="mt-4 p-4 bg-white rounded-lg border border-orange-200">
+                                <p class="font-semibold text-gray-900 mb-2">📌 Lead Types:</p>
+                                <div class="grid grid-cols-2 gap-3 text-sm">
+                                    <div class="p-3 bg-green-50 rounded">
+                                        <p class="font-semibold text-green-900">High-Value Leads</p>
+                                        <p class="text-xs text-green-700">Added to premium nurture sequence</p>
+                                    </div>
+                                    <div class="p-3 bg-blue-50 rounded">
+                                        <p class="font-semibold text-blue-900">Mid-Tier Leads</p>
+                                        <p class="text-xs text-blue-700">Auto follow-up campaigns</p>
+                                    </div>
+                                    <div class="p-3 bg-orange-50 rounded">
+                                        <p class="font-semibold text-orange-900">Cold Leads</p>
+                                        <p class="text-xs text-orange-700">Nurture sequences over 90 days</p>
+                                    </div>
+                                    <div class="p-3 bg-purple-50 rounded">
+                                        <p class="font-semibold text-purple-900">Retargeting Pool</p>
+                                        <p class="text-xs text-purple-700">Ready for future campaigns</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Footer -->
+    <div class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 px-6 py-4">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="00-design-index.html" class="text-blue-600 hover:underline font-semibold">← Back to Index</a>
+            <div class="flex gap-4">
+                <span class="text-sm text-gray-600">You are viewing:</span>
+                <a href="07-government-enterprise.html" class="px-3 py-1 bg-amber-100 text-amber-700 rounded font-semibold">🏛️ Government</a>
+                <a href="01-smart-inbox.html" class="px-3 py-1 text-gray-600 hover:bg-gray-100 rounded">📧 Back to: Inbox</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

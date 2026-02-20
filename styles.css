@@ -1,0 +1,24 @@
+/* Non-Tailwind custom styles moved from index.html */
+.serif-logo {
+    font-family: 'Playfair Display', serif;
+    letter-spacing: 0.3em;
+}
+.small-caps {
+    font-variant: all-small-caps;
+    letter-spacing: 0.15em;
+}
+.hairline-border {
+    border-width: 0.5px;
+    border-color: rgba(0, 0, 0, 0.1);
+}
+.dark .hairline-border {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+.museum-card {
+    display: flex;
+    flex-direction: column;
+    transition: all 500ms;
+}
+.material-symbols-outlined {
+    font-variation-settings: 'WHT' 100, 'opsz' 20;
+}

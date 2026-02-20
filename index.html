@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>AETERNA - The Modernist</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script src="tailwind-config.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <!-- AOS CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css"/>
+    <style type="text/tailwindcss">
+        @layer base {
+            body {
+                @apply bg-background-light text-black font-display antialiased;
+            }
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-black dark:text-white transition-colors duration-300">
+
+    <div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+        <header class="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-black/80 backdrop-blur-md border-b hairline-border">
+            <div class="flex items-center justify-between h-24 px-8 md:px-12">
+                <div class="flex items-center gap-4 h-full border-r hairline-border pr-12">
+                    <span class="material-symbols-outlined text-2xl font-light">grid_view</span>
+                    <h2 class="text-lg font-medium tracking-[0.4em] serif-logo">AETERNA</h2>
+                </div>
+                <nav class="hidden lg:flex flex-1 justify-center items-center gap-16">
+                    <a class="text-[10px] font-bold uppercase tracking-[0.2em] hover:text-primary transition-colors" href="#">Portfolio</a>
+                    <a class="text-[10px] font-bold uppercase tracking-[0.2em] hover:text-primary transition-colors" href="#">Curation</a>
+                    <a class="text-[10px] font-bold uppercase tracking-[0.2em] hover:text-primary transition-colors" href="#">Studio</a>
+                    <a class="text-[10px] font-bold uppercase tracking-[0.2em] hover:text-primary transition-colors" href="#">Inquiry</a>
+                </nav>
+                <div class="flex items-center gap-8 h-full border-l hairline-border pl-12">
+                    <button class="flex items-center justify-center bg-primary text-white text-[10px] font-bold uppercase tracking-[0.2em] h-11 px-8 hover:bg-black transition-all">
+                        Inquire
+                    </button>
+                </div>
+            </div>
+        </header>
+        <main class="flex-1">
+            <section class="grid grid-cols-1 lg:grid-cols-2 min-h-screen pt-24 border-b hairline-border" data-aos="fade-up">
+                <div class="flex flex-col justify-center px-8 md:px-16 lg:px-24 py-20 border-r hairline-border">
+                    <div class="max-w-[500px]">
+                        <span class="small-caps text-[10px] font-bold text-gray-400 mb-8 block">Volume II — The Modernist</span>
+                        <h1 class="text-black dark:text-white text-6xl md:text-7xl lg:text-8xl font-light leading-[1] tracking-tighter mb-10">
+                            Architectural <br/><span class="font-serif italic">Integrity</span>, <br/>Interior Soul
+                        </h1>
+                        <p class="text-gray-500 dark:text-gray-400 text-lg font-light leading-relaxed mb-12 max-w-[400px]">
+                            A rigorous exploration of form and void, creating spaces that act as silent vessels for human experience.
+                        </p>
+                        <div class="flex items-center gap-10">
+                            <button class="bg-primary text-white text-[10px] font-bold uppercase tracking-[0.2em] h-14 px-10 hover:bg-black transition-all flex items-center gap-4">
+                                View Monograph
+                                <span class="material-symbols-outlined text-lg">trending_flat</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative overflow-hidden bg-gray-100 dark:bg-zinc-900" data-aos="fade-left">
+                    <div class="absolute inset-0 bg-cover bg-center grayscale hover:grayscale-0 transition-all duration-1000" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCro2t9sDzQMXDAGHTbBYNbgVxA6Hc2xMTaKSs6dZtN8JU0YevAhDQJPUDs-HudHosgFbzYXniNerPnbHMPrrmPcpUEi0EV-d6qWyKKfTIGwrqPPdD9xJfSwbCOLWRgAaRaLPbbkkEAX-V_V17mlK5dwnlcrZ7abZ0_Vji4eDI5rbLtJPs-1HqvwRs3zaLRMeThXjA9_fewUYbj-1CbW5Zvkjm2nqw58mq6i018Wwf5RTZwvaEa8edozK53ZVXWi8FuQapwxF8QeGDd");'></div>
+                    <div class="absolute bottom-12 left-12 flex flex-col gap-2">
+                        <span class="text-white text-[10px] font-bold uppercase tracking-[0.3em]">Project 042</span>
+                        <span class="text-white text-xs font-light opacity-60">Minimalist Pavilion, Switzerland</span>
+                    </div>
+                </div>
+            </section>
+            <!-- More sections below follow the same pattern with AOS attributes -->
+        </main>
+        <footer class="bg-white dark:bg-black border-t hairline-border px-8 md:px-16 lg:px-24 py-20">
+            <!-- Footer content -->
+</footer>
+        </footer>
+    </div>
+    <script src="script.js" defer></script>
+</body>
+</html>

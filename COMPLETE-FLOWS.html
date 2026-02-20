@@ -1,0 +1,1224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhatsApp Business Platform - Complete End-to-End Flows</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .flow-container { max-height: 800px; overflow-y-auto; }
+        .step-indicator { min-width: 100px; }
+        .step-dot { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 50%; font-weight: bold; }
+        .step-active { background-color: #10b981; color: white; }
+        .step-completed { background-color: #6b7280; color: white; }
+        .step-pending { background-color: #e5e7eb; color: #6b7280; }
+        .fade-in { animation: fadeIn 0.3s ease-in; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-slate-900 to-slate-800">
+    <div class="min-h-screen p-8">
+        <div class="max-w-7xl mx-auto">
+            <!-- Header -->
+            <div class="text-center mb-12">
+                <h1 class="text-4xl font-bold text-white mb-2">WhatsApp Business Platform</h1>
+                <p class="text-xl text-gray-300">Complete End-to-End Workflows</p>
+                <p class="text-sm text-gray-400 mt-2">Click a journey below to see the COMPLETE workflow from start to finish</p>
+            </div>
+
+            <!-- Journey Selection -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+                <button onclick="startJourney('inquiry')" class="bg-gradient-to-br from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 text-white rounded-lg p-6 text-left transform hover:scale-105 transition">
+                    <h2 class="text-2xl font-bold mb-2">📨 Inquiry → Purchase</h2>
+                    <p class="text-sm">Customer sends message → Receives offer → Places order → Gets tracked</p>
+                </button>
+
+                <button onclick="startJourney('campaign')" class="bg-gradient-to-br from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white rounded-lg p-6 text-left transform hover:scale-105 transition">
+                    <h2 class="text-2xl font-bold mb-2">📢 Campaign Execution</h2>
+                    <p class="text-sm">Create segment → Design message → Send campaign → Measure results</p>
+                </button>
+
+                <button onclick="startJourney('team')" class="bg-gradient-to-br from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600 text-white rounded-lg p-6 text-left transform hover:scale-105 transition">
+                    <h2 class="text-2xl font-bold mb-2">👥 Team Workflow</h2>
+                    <p class="text-sm">Create team → Manage inbox → Handle orders → Track performance</p>
+                </button>
+
+                <button onclick="startJourney('government')" class="bg-gradient-to-br from-blue-600 to-amber-600 hover:from-blue-700 hover:to-amber-700 text-white rounded-lg p-6 text-left transform hover:scale-105 transition">
+                    <h2 class="text-2xl font-bold mb-2">🏛️ Government Notifications</h2>
+                    <p class="text-sm">Create verified notification → Target regions → Capture leads → Nurture</p>
+                </button>
+            </div>
+
+            <!-- Journey Flow Container -->
+            <div id="flowContainer" class="hidden">
+                <!-- Close Button -->
+                <div class="flex justify-end mb-4">
+                    <button onclick="closeFlow()" class="bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded-lg font-semibold">Close Flow</button>
+                </div>
+
+                <!-- Flow Content -->
+                <div class="bg-white rounded-lg shadow-2xl overflow-hidden">
+                    <!-- Progress Bar -->
+                    <div id="progressContainer" class="bg-gray-100 p-6">
+                        <div id="progressSteps" class="flex items-center justify-between"></div>
+                    </div>
+
+                    <!-- Flow Screens -->
+                    <div id="flowContent" class="p-8 flow-container"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const flows = {
+            inquiry: {
+                title: '📨 Inquiry → Purchase Journey',
+                color: 'from-green-500 to-blue-500',
+                steps: [
+                    {
+                        title: 'Step 1: Customer Message Received',
+                        description: 'Customer sends WhatsApp message asking about a product',
+                        content: `
+                            <div class="space-y-6">
+                                <div class="bg-blue-50 p-6 rounded-lg border-2 border-blue-300">
+                                    <h3 class="font-bold text-lg mb-3">📱 Inbox Message</h3>
+                                    <div class="bg-white p-4 rounded border-l-4 border-blue-500">
+                                        <p class="font-semibold text-gray-900">Rajesh Kumar</p>
+                                        <p class="text-gray-600 text-sm mt-1">Hi, do you have the iPhone 15 in stock?</p>
+                                        <p class="text-xs text-gray-400 mt-2">Today at 2:45 PM</p>
+                                    </div>
+                                </div>
+                                <div class="bg-yellow-50 p-4 rounded-lg border-l-4 border-yellow-500">
+                                    <p class="text-sm text-gray-700"><strong>System:</strong> New customer detected. Auto-profile created.</p>
+                                </div>
+                            </div>
+                        `,
+                        action: 'Next: Check Customer Profile'
+                    },
+                    {
+                        title: 'Step 2: View Customer Profile',
+                        description: 'System automatically created customer profile with conversation history',
+                        content: `
+                            <div class="space-y-6">
+                                <div class="bg-blue-50 p-6 rounded-lg border-2 border-blue-300">
+                                    <h3 class="font-bold text-lg mb-3">👤 Customer Profile</h3>
+                                    <div class="grid grid-cols-2 gap-4">
+                                        <div class="bg-white p-4 rounded">
+                                            <p class="text-xs text-gray-500 uppercase">Name</p>
+                                            <p class="font-semibold text-gray-900">Rajesh Kumar</p>
+                                        </div>
+                                        <div class="bg-white p-4 rounded">
+                                            <p class="text-xs text-gray-500 uppercase">Location</p>
+                                            <p class="font-semibold text-gray-900">Bangalore, KA</p>
+                                        </div>
+                                        <div class="bg-white p-4 rounded">
+                                            <p class="text-xs text-gray-500 uppercase">Interest</p>
+                                            <p class="font-semibold text-gray-900">Electronics</p>
+                                        </div>
+                                        <div class="bg-white p-4 rounded">
+                                            <p class="text-xs text-gray-500 uppercase">First Contact</p>
+                                            <p class="font-semibold text-gray-900">Today</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bg-green-50 p-4 rounded-lg border-l-4 border-green-500">
+                                    <p class="text-sm text-gray-700"><strong>✓ Action:</strong> Customer auto-segmented as "Electronics Interest - High Value"</p>
+                                </div>
+                            </div>
+                        `,
+                        action: 'Next: Send Product Recommendation'
+                    },
+                    {
+                        title: 'Step 3: Send Product Recommendation',
+                        description: 'Agent sends personalized product recommendation via WhatsApp campaign',
+                        content: `
+                            <div class="space-y-6">
+                                <div class="bg-orange-50 p-6 rounded-lg border-2 border-orange-300">
+                                    <h3 class="font-bold text-lg mb-3">📤 Campaign Message</h3>
+                                    <div class="bg-white p-4 rounded border-l-4 border-orange-500 space-y-3">
+                                        <p class="text-gray-900"><strong>To:</strong> Rajesh Kumar</p>
+                                        <div class="bg-gray-50 p-3 rounded text-sm text-gray-700">
+                                            <p>Hi Rajesh! 👋</p>
+                                            <p class="mt-2">We have iPhone 15 in stock!</p>
+                                            <p class="mt-2"><strong>Price: ₹79,999</strong></p>
+                                            <p class="mt-2">🎁 Special offer: Free case + Screen protector</p>
+                                            <p class="mt-3">✅ Click below to order now</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bg-green-50 p-4 rounded-lg border-l-4 border-green-500">
+                                    <p class="text-sm text-gray-700"><strong>✓ Status:</strong> Message sent successfully</p>
+                                </div>
+                            </div>
+                        `,
+                        action: 'Next: Customer Places Order'
+                    },
+                    {
+                        title: 'Step 4: Customer Places Order',
+                        description: 'Customer clicks order link and completes purchase',
+                        content: `
+                            <div class="space-y-6">
+                                <div class="bg-indigo-50 p-6 rounded-lg border-2 border-indigo-300">
+                                    <h3 class="font-bold text-lg mb-3">🛒 Order Created</h3>
+                                    <div class="bg-white p-4 rounded space-y-3 border-l-4 border-indigo-500">
+                                        <div class="flex justify-between">
+                                            <span class="text-gray-700">Product:</span>
+                                            <span class="font-semibold">iPhone 15 (Black, 128GB)</span>
+                                        </div>
+                                        <div class="flex justify-between">
+                                            <span class="text-gray-700">Price:</span>
+                                            <span class="font-semibold">₹79,999</span>
+                                        </div>
+                                        <div class="flex justify-between">
+                                            <span class="text-gray-700">Shipping:</span>
+                                            <span class="font-semibold">₹500</span>
+                                        </div>
+                                        <div class="border-t pt-2 flex justify-between font-bold text-lg">
+                                            <span>Total:</span>
+                                            <span class="text-green-600">₹80,499</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-500">
+                                    <p class="text-sm text-gray-700"><strong>💳 Payment:</strong> Payment link sent to customer via WhatsApp</p>
+                                </div>
+                            </div>
+                        `,
+                        action: 'Next: Process Payment'
+                    },
+                    {
+                        title: 'Step 5: Payment Confirmation',
+                        description: 'Payment processed successfully',
+                        content: `
+                            <div class="space-y-6">
+                                <div class="bg-green-50 p-6 rounded-lg border-2 border-green-300">
+                                    <h3 class="font-bold text-lg mb-3">✅ Payment Confirmed</h3>
+                                    <div class="bg-white p-4 rounded space-y-2 border-l-4 border-green-500">
+                                        <div class="flex justify-between">
+                                            <span class="text-gray-700">Order ID:</span>
+                                            <span class="font-semibold font-mono">ORD-2026-001847</span>
+                                        </div>
+                                        <div class="flex justify-between">
+                                            <span class="text-gray-700">Amount Paid:</span>
+                                            <span class="font-semibold text-green-600">₹80,499</span>
+                                        </div>
+                                        <div class="flex justify-between">
+                                            <span class="text-gray-700">Status:</span>
+                                            <span class="inline-block bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm font-semibold">PAID</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-500">
+                                    <p class="text-sm text-gray-700"><strong>📨 Notification:</strong> Confirmation message sent to customer</p>
+                                </div>
+                            </div>
+                        `,
+                        action: 'Next: Order Processing & Shipping'
+                    },
+                    {
+                        title: 'Step 6: Order Processing',
+                        description: 'Order packed and ready to ship',
+                        content: `
+                            <div class="space-y-6">
+                                <div class="bg-yellow-50 p-6 rounded-lg border-2 border-yellow-300">
+                                    <h3 class="font-bold text-lg mb-3">📦 Order Status Update</h3>
+                                    <div class="space-y-3">
+                                        <div class="bg-white p-3 rounded flex items-center space-x-3 border-l-4 border-green-500">
+                                            <span class="text-2xl">✓</span>
+                                            <span class="text-gray-700"><strong>Order Confirmed</strong> - 2 min ago</span>
+                                        </div>
+                                        <div class="bg-white p-3 rounded flex items-center space-x-3 border-l-4 border-green-500">
+                                            <span class="text-2xl">✓</span>
+                                            <span class="text-gray-700"><strong>Payment Verified</strong> - 1 min ago</span>
+                                        </div>
+                                        <div class="bg-white p-3 rounded flex items-center space-x-3 border-l-4 border-yellow-500">
+                                            <span class="text-2xl">▶</span>
+                                            <span class="text-gray-700"><strong>Being Packed</strong> - In Progress</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-500">
+                                    <p class="text-sm text-gray-700"><strong>📱 SMS Sent:</strong> "Your order is being prepared. Shipping tomorrow!"</p>
+                                </div>
+                            </div>
+                        `,
+                        action: 'Next: Delivery & Analytics'
+                    },
+                    {
+                        title: 'Step 7: Delivery & Tracking',
+                        description: 'Order shipped and delivered',
+                        content: `
+                            <div class="space-y-6">
+                                <div class="bg-green-50 p-6 rounded-lg border-2 border-green-300">
+                                    <h3 class="font-bold text-lg mb-3">🚚 Delivery Status</h3>
+                                    <div class="space-y-3">
+                                        <div class="bg-white p-3 rounded flex items-center space-x-3 border-l-4 border-green-500">
+                                            <span class="text-2xl">✓</span>
+                                            <span class="text-gray-700"><strong>Shipped</strong> - 5 hours ago</span>
+                                        </div>
+                                        <div class="bg-white p-3 rounded flex items-center space-x-3 border-l-4 border-green-500">
+                                            <span class="text-2xl">✓</span>
+                                            <span class="text-gray-700"><strong>In Transit</strong> - With courier</span>
+                                        </div>
+                                        <div class="bg-white p-3 rounded flex items-center space-x-3 border-l-4 border-green-500">
+                                            <span class="text-2xl">✓</span>
+                                            <span class="text-gray-700"><strong>Out for Delivery</strong> - 30 mins away</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-500">
+                                    <p class="text-sm text-gray-700"><strong>📍 Tracking:</strong> Real-time SMS updates sent to customer</p>
+                                </div>
+                            </div>
+                        `,
+                        action: 'Next: View Analytics'
+                    },
+                    {
+                        title: 'Step 8: Analytics & Revenue Tracking',
+                        description: 'Complete order tracked in analytics dashboard',
+                        content: `
+                            <div class="space-y-6">
+                                <div class="bg-purple-50 p-6 rounded-lg border-2 border-purple-300">
+                                    <h3 class="font-bold text-lg mb-3">📊 Analytics Dashboard</h3>
+                                    <div class="grid grid-cols-2 gap-4">
+                                        <div class="bg-white p-4 rounded">
+                                            <p class="text-xs text-gray-500 uppercase">Revenue</p>
+                                            <p class="font-bold text-2xl text-green-600">₹80,499</p>
+                                        </div>
+                                        <div class="bg-white p-4 rounded">
+                                            <p class="text-xs text-gray-500 uppercase">Order Status</p>
+                                            <p class="font-bold text-lg text-blue-600">Out for Delivery</p>
+                                        </div>
+                                        <div class="bg-white p-4 rounded">
+                                            <p class="text-xs text-gray-500 uppercase">Customer CLV</p>
+                                            <p class="font-bold text-2xl text-purple-600">₹80,499</p>
+                                        </div>
+                                        <div class="bg-white p-4 rounded">
+                                            <p class="text-xs text-gray-500 uppercase">Conversion</p>
+                                            <p class="font-bold text-lg text-green-600">✓ Complete</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bg-green-50 p-4 rounded-lg border-l-4 border-green-500">
+                                    <p class="text-sm text-gray-700"><strong>✓ Journey Complete:</strong> Customer → Profile → Campaign → Order → Payment → Shipping → Analytics</p>
+                                </div>
+                            </div>
+                        `,
+                        action: 'Journey Complete ✓'
+                    }
+                ]
+            },
+            campaign: {
+                title: '📢 Campaign Execution Journey',
+                color: 'from-orange-500 to-red-500',
+                steps: [
+                    {
+                        title: 'Step 1: Create Customer Segment',
+                        description: 'Define target audience for the campaign',
+                        content: `
+                            <div class="space-y-6">
+                                <div class="bg-blue-50 p-6 rounded-lg border-2 border-blue-300">
+                                    <h3 class="font-bold text-lg mb-3">👥 Segment Creation</h3>
+                                    <div class="space-y-3">
+                                        <div class="bg-white p-4 rounded border-l-4 border-blue-500">
+                                            <p class="text-sm text-gray-600 uppercase">Segment Name</p>
+                                            <p class="font-bold text-lg">High-Value Bangalore Users</p>
+                                        </div>
+                                        <div class="bg-white p-4 rounded border-l-4 border-blue-500">
+                                            <p class="text-sm text-gray-600 uppercase">Criteria</p>
+                                            <ul class="text-sm text-gray-700 space-y-1">
+                                                <li>✓ Location: Bangalore</li>
+                                                <li>✓ Spending: ₹50,000+</li>
+                                                <li>✓ Activity: Active in last 30 days</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bg-green-50 p-4 rounded-lg border-l-4 border-green-500">
+                                    <p class="text-sm text-gray-700"><strong>✓ Segment Ready:</strong> 2,847 customers matched</p>
+                                </div>
+                            </div>
+                        `,
+                        action: 'Next: Design Campaign Message'
+                    },
+                    {
+                        title: 'Step 2: Design Campaign Message',
+                        description: 'Create message template for the campaign',
+                        content: `
+                            <div class="space-y-6">
+                                <div class="bg-orange-50 p-6 rounded-lg border-2 border-orange-300">
+                                    <h3 class="font-bold text-lg mb-3">✏️ Message Builder</h3>
+                                    <div class="bg-white p-4 rounded space-y-4 border-l-4 border-orange-500">
+                                        <div>
+                                            <p class="text-xs text-gray-500 uppercase">Message Type</p>
+                                            <p class="font-semibold">Text + Image</p>
+                                        </div>
+                                        <div class="bg-gray-50 p-3 rounded text-sm space-y-2">
+                                            <p class="font-semibold text-gray-900">🎉 FLASH SALE - 50% OFF!</p>
+                                            <p class="text-gray-700">Exclusive offer for Bangalore! Get 50% off on selected electronics.</p>
+                                            <p class="text-gray-700">✨ Free delivery on all orders above ₹5,000</p>
+                                            <p class="text-gray-700">⏰ Valid till midnight today</p>
+                                            <p class="text-blue-600 font-semibold">👉 Shop Now</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bg-green-50 p-4 rounded-lg border-l-4 border-green-500">
+                                    <p class="text-sm text-gray-700"><strong>✓ Message Created:</strong> Ready for review</p>
+                                </div>
+                            </div>
+                        `,
+                        action: 'Next: Check Spam Score'
+                    },
+                    {
+                        title: 'Step 3: Check Spam Score',
+                        description: 'Verify message quality and spam risk',
+                        content: `
+                            <div class="space-y-6">
+                                <div class="bg-yellow-50 p-6 rounded-lg border-2 border-yellow-300">
+                                    <h3 class="font-bold text-lg mb-3">🔍 Spam Detection</h3>
+                                    <div class="bg-white p-4 rounded space-y-3 border-l-4 border-yellow-500">
+                                        <div class="flex justify-between items-center">
+                                            <span class="text-gray-700">Spam Score</span>
+                                            <span class="bg-green-100 text-green-800 px-4 py-2 rounded-full font-bold">2/100 (Low Risk)</span>
+                                        </div>
+                                        <div class="border-t pt-3 space-y-2 text-sm">
+                                            <div class="flex items-center space-x-2">
+                                                <span class="text-green-600">✓</span>
+                                                <span class="text-gray-700">No suspicious links</span>
+                                            </div>
+                                            <div class="flex items-center space-x-2">
+                                                <span class="text-green-600">✓</span>
+                                                <span class="text-gray-700">Reasonable text length</span>
+                                            </div>
+                                            <div class="flex items-center space-x-2">
+                                                <span class="text-green-600">✓</span>
+                                                <span class="text-gray-700">No spam keywords</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bg-green-50 p-4 rounded-lg border-l-4 border-green-500">
+                                    <p class="text-sm text-gray-700"><strong>✓ Approved:</strong> Safe to send to all customers</p>
+                                </div>
+                            </div>
+                        `,
+                        action: 'Next: Preview Message'
+                    },
+                    {
+                        title: 'Step 4: Mobile Preview',
+                        description: 'See how message appears on phone',
+                        content: `
+                            <div class="space-y-6">
+                                <div class="flex justify-center">
+                                    <div class="bg-gray-900 rounded-3xl p-3 w-80 border-8 border-gray-800">
+                                        <div class="bg-white rounded-2xl overflow-hidden">
+                                            <div class="bg-green-600 p-4 text-white text-sm font-semibold">WhatsApp</div>
+                                            <div class="p-4 bg-gray-50 space-y-4">
+                                                <div class="bg-white p-3 rounded-lg rounded-tl-none border-l-4 border-green-600">
+                                                    <p class="text-sm font-semibold">🎉 FLASH SALE - 50% OFF!</p>
+                                                    <p class="text-xs text-gray-700 mt-1">Exclusive offer for Bangalore!</p>
+                                                    <p class="text-xs text-gray-700">Get 50% off on selected electronics.</p>
+                                                    <p class="text-xs text-gray-700 mt-2">✨ Free delivery on ₹5,000+</p>
+                                                    <p class="text-xs text-gray-700">⏰ Valid till midnight</p>
+                                                    <p class="text-xs text-blue-600 font-bold mt-2">👉 Shop Now</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bg-green-50 p-4 rounded-lg border-l-4 border-green-500">
+                                    <p class="text-sm text-gray-700"><strong>✓ Preview Approved:</strong> Ready to send</p>
+                                </div>
+                            </div>
+                        `,
+                        action: 'Next: Schedule Send'
+                    },
+                    {
+                        title: 'Step 5: Schedule Campaign',
+                        description: 'Set send time and confirm',
+                        content: `
+                            <div class="space-y-6">
+                                <div class="bg-indigo-50 p-6 rounded-lg border-2 border-indigo-300">
+                                    <h3 class="font-bold text-lg mb-3">⏰ Schedule Send</h3>
+                                    <div class="bg-white p-4 rounded space-y-4 border-l-4 border-indigo-500">
+                                        <div>
+                                            <p class="text-xs text-gray-500 uppercase">Send Time</p>
+                                            <p class="font-semibold">Today at 6:00 PM</p>
+                                        </div>
+                                        <div>
+                                            <p class="text-xs text-gray-500 uppercase">Recipients</p>
+                                            <p class="font-semibold">2,847 customers</p>
+                                        </div>
+                                        <div>
+                                            <p class="text-xs text-gray-500 uppercase">Estimated Send Time</p>
+                                            <p class="font-semibold">10-15 minutes to all recipients</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bg-green-50 p-4 rounded-lg border-l-4 border-green-500">
+                                    <p class="text-sm text-gray-700"><strong>✓ Ready to Send:</strong> 2,847 messages queued</p>
+                                </div>
+                            </div>
+                        `,
+                        action: 'Next: Send Campaign'
+                    },
+                    {
+                        title: 'Step 6: Campaign Delivery',
+                        description: 'Messages being sent to all customers',
+                        content: `
+                            <div class="space-y-6">
+                                <div class="bg-green-50 p-6 rounded-lg border-2 border-green-300">
+                                    <h3 class="font-bold text-lg mb-3">📤 Sending Messages</h3>
+                                    <div class="bg-white p-4 rounded space-y-4 border-l-4 border-green-500">
+                                        <div>
+                                            <div class="flex justify-between mb-2">
+                                                <span class="text-sm font-semibold text-gray-700">Delivery Progress</span>
+                                                <span class="text-sm font-bold text-green-600">2,847 / 2,847</span>
+                                            </div>
+                                            <div class="w-full bg-gray-200 rounded-full h-3">
+                                                <div class="bg-green-500 h-3 rounded-full" style="width: 100%;"></div>
+                                            </div>
+                                        </div>
+                                        <div class="grid grid-cols-3 gap-4 pt-4 border-t">
+                                            <div class="text-center">
+                                                <p class="text-2xl font-bold text-green-600">2,847</p>
+                                                <p class="text-xs text-gray-600">Delivered</p>
+                                            </div>
+                                            <div class="text-center">
+                                                <p class="text-2xl font-bold text-yellow-600">0</p>
+                                                <p class="text-xs text-gray-600">Failed</p>
+                                            </div>
+                                            <div class="text-center">
+                                                <p class="text-2xl font-bold text-blue-600">0</p>
+                                                <p class="text-xs text-gray-600">Pending</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bg-green-50 p-4 rounded-lg border-l-4 border-green-500">
+                                    <p class="text-sm text-gray-700"><strong>✓ Campaign Live:</strong> All messages delivered successfully</p>
+                                </div>
+                            </div>
+                        `,
+                        action: 'Next: Monitor Responses'
+                    },
+                    {
+                        title: 'Step 7: Receive Customer Responses',
+                        description: 'Customers respond with purchases and inquiries',
+                        content: `
+                            <div class="space-y-6">
+                                <div class="bg-purple-50 p-6 rounded-lg border-2 border-purple-300">
+                                    <h3 class="font-bold text-lg mb-3">💬 Customer Responses</h3>
+                                    <div class="space-y-3">
+                                        <div class="bg-white p-3 rounded border-l-4 border-green-500">
+                                            <p class="font-semibold text-gray-900">Priya Sharma</p>
+                                            <p class="text-gray-700 text-sm">"Great offer! Placing order now"</p>
+                                        </div>
+                                        <div class="bg-white p-3 rounded border-l-4 border-green-500">
+                                            <p class="font-semibold text-gray-900">Amit Patel</p>
+                                            <p class="text-gray-700 text-sm">"Is free delivery available in my area?"</p>
+                                        </div>
+                                        <div class="bg-white p-3 rounded border-l-4 border-green-500">
+                                            <p class="font-semibold text-gray-900">Neha Gupta</p>
+                                            <p class="text-gray-700 text-sm">"🙌 Just bought 2 items!"</p>
+                                        </div>
+                                    </div>
+                                    <div class="mt-4 pt-4 border-t flex justify-between text-sm">
+                                        <span class="text-gray-700"><strong>Total Responses:</strong> 847</span>
+                                        <span class="font-bold text-green-600">Response Rate: 30%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        `,
+                        action: 'Next: View Campaign Metrics'
+                    },
+                    {
+                        title: 'Step 8: Campaign Analytics',
+                        description: 'Complete metrics and ROI analysis',
+                        content: `
+                            <div class="space-y-6">
+                                <div class="bg-purple-50 p-6 rounded-lg border-2 border-purple-300">
+                                    <h3 class="font-bold text-lg mb-3">📊 Campaign Performance</h3>
+                                    <div class="grid grid-cols-2 gap-4">
+                                        <div class="bg-white p-4 rounded border-l-4 border-purple-500">
+                                            <p class="text-xs text-gray-500 uppercase">Sent</p>
+                                            <p class="text-2xl font-bold">2,847</p>
+                                        </div>
+                                        <div class="bg-white p-4 rounded border-l-4 border-green-500">
+                                            <p class="text-xs text-gray-500 uppercase">Responses</p>
+                                            <p class="text-2xl font-bold text-green-600">847 (30%)</p>
+                                        </div>
+                                        <div class="bg-white p-4 rounded border-l-4 border-blue-500">
+                                            <p class="text-xs text-gray-500 uppercase">Orders</p>
+                                            <p class="text-2xl font-bold text-blue-600">254 (9%)</p>
+                                        </div>
+                                        <div class="bg-white p-4 rounded border-l-4 border-green-600">
+                                            <p class="text-xs text-gray-500 uppercase">Revenue</p>
+                                            <p class="text-2xl font-bold text-green-700">₹20.4L</p>
+                                        </div>
+                                    </div>
+                                    <div class="mt-4 pt-4 border-t">
+                                        <div class="flex justify-between text-sm">
+                                            <span class="text-gray-700">ROI:</span>
+                                            <span class="font-bold text-green-600">420% 📈</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bg-green-50 p-4 rounded-lg border-l-4 border-green-500">
+                                    <p class="text-sm text-gray-700"><strong>✓ Campaign Complete:</strong> 254 orders generated from 2,847 customers</p>
+                                </div>
+                            </div>
+                        `,
+                        action: 'Journey Complete ✓'
+                    }
+                ]
+            },
+            team: {
+                title: '👥 Team Workflow Journey',
+                color: 'from-pink-500 to-purple-500',
+                steps: [
+                    {
+                        title: 'Step 1: Create Team',
+                        description: 'Set up team with multiple members',
+                        content: `
+                            <div class="space-y-6">
+                                <div class="bg-pink-50 p-6 rounded-lg border-2 border-pink-300">
+                                    <h3 class="font-bold text-lg mb-3">👥 Team Setup</h3>
+                                    <div class="space-y-3">
+                                        <div class="bg-white p-4 rounded border-l-4 border-pink-500">
+                                            <p class="text-sm text-gray-600 uppercase">Team Name</p>
+                                            <p class="font-bold text-lg">Customer Support Team</p>
+                                        </div>
+                                        <div class="bg-white p-4 rounded border-l-4 border-pink-500">
+                                            <p class="text-sm text-gray-600 uppercase">Members</p>
+                                            <ul class="text-sm text-gray-700 space-y-2 mt-2">
+                                                <li>👤 Sarah Johnson (Admin)</li>
+                                                <li>👤 Mike Chen (Agent)</li>
+                                                <li>👤 Emma Davis (Agent)</li>
+                                                <li>👤 Rajesh Kumar (Supervisor)</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bg-green-50 p-4 rounded-lg border-l-4 border-green-500">
+                                    <p class="text-sm text-gray-700"><strong>✓ Team Created:</strong> 4 members assigned with roles</p>
+                                </div>
+                            </div>
+                        `,
+                        action: 'Next: Assign Permissions'
+                    },
+                    {
+                        title: 'Step 2: Set Permissions',
+                        description: 'Configure role-based access control',
+                        content: `
+                            <div class="space-y-6">
+                                <div class="bg-purple-50 p-6 rounded-lg border-2 border-purple-300">
+                                    <h3 class="font-bold text-lg mb-3">🔐 Permission Matrix</h3>
+                                    <div class="bg-white rounded border-l-4 border-purple-500 overflow-hidden">
+                                        <table class="w-full text-sm">
+                                            <thead>
+                                                <tr class="bg-purple-100 border-b">
+                                                    <th class="p-3 text-left">Feature</th>
+                                                    <th class="p-3 text-center">Admin</th>
+                                                    <th class="p-3 text-center">Agent</th>
+                                                    <th class="p-3 text-center">Super</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr class="border-b hover:bg-purple-50">
+                                                    <td class="p-3">Inbox</td>
+                                                    <td class="p-3 text-center">✓</td>
+                                                    <td class="p-3 text-center">✓</td>
+                                                    <td class="p-3 text-center">✓</td>
+                                                </tr>
+                                                <tr class="border-b hover:bg-purple-50">
+                                                    <td class="p-3">Campaigns</td>
+                                                    <td class="p-3 text-center">✓</td>
+                                                    <td class="p-3 text-center">✗</td>
+                                                    <td class="p-3 text-center">✓</td>
+                                                </tr>
+                                                <tr class="border-b hover:bg-purple-50">
+                                                    <td class="p-3">Orders</td>
+                                                    <td class="p-3 text-center">✓</td>
+                                                    <td class="p-3 text-center">✓</td>
+                                                    <td class="p-3 text-center">✓</td>
+                                                </tr>
+                                                <tr class="border-b hover:bg-purple-50">
+                                                    <td class="p-3">Analytics</td>
+                                                    <td class="p-3 text-center">✓</td>
+                                                    <td class="p-3 text-center">✗</td>
+                                                    <td class="p-3 text-center">✓</td>
+                                                </tr>
+                                                <tr class="hover:bg-purple-50">
+                                                    <td class="p-3">Team Management</td>
+                                                    <td class="p-3 text-center">✓</td>
+                                                    <td class="p-3 text-center">✗</td>
+                                                    <td class="p-3 text-center">✗</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="bg-green-50 p-4 rounded-lg border-l-4 border-green-500">
+                                    <p class="text-sm text-gray-700"><strong>✓ Permissions Set:</strong> Role-based access configured</p>
+                                </div>
+                            </div>
+                        `,
+                        action: 'Next: Team Handles Inbox'
+                    },
+                    {
+                        title: 'Step 3: Shared Inbox Management',
+                        description: 'Team handles customer messages together',
+                        content: `
+                            <div class="space-y-6">
+                                <div class="bg-blue-50 p-6 rounded-lg border-2 border-blue-300">
+                                    <h3 class="font-bold text-lg mb-3">📧 Shared Inbox</h3>
+                                    <div class="space-y-3">
+                                        <div class="bg-white p-3 rounded border-l-4 border-green-500">
+                                            <div class="flex justify-between">
+                                                <p class="font-semibold text-gray-900">Customer: Rajesh Kumar</p>
+                                                <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">Assigned: Mike Chen</span>
+                                            </div>
+                                            <p class="text-sm text-gray-700 mt-1">"Where is my order?"</p>
+                                        </div>
+                                        <div class="bg-white p-3 rounded border-l-4 border-yellow-500">
+                                            <div class="flex justify-between">
+                                                <p class="font-semibold text-gray-900">Customer: Priya Sharma</p>
+                                                <span class="text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded">Assigned: Emma Davis</span>
+                                            </div>
+                                            <p class="text-sm text-gray-700 mt-1">"Return request for product"</p>
+                                        </div>
+                                        <div class="bg-white p-3 rounded border-l-4 border-red-500">
+                                            <div class="flex justify-between">
+                                                <p class="font-semibold text-gray-900">Customer: Amit Patel</p>
+                                                <span class="text-xs bg-red-100 text-red-800 px-2 py-1 rounded">Unassigned</span>
+                                            </div>
+                                            <p class="text-sm text-gray-700 mt-1">"Product quality issue"</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-500">
+                                    <p class="text-sm text-gray-700"><strong>📊 Stats:</strong> 3 active chats, 2 assigned, 1 pending assignment</p>
+                                </div>
+                            </div>
+                        `,
+                        action: 'Next: Handle Customer Issues'
+                    },
+                    {
+                        title: 'Step 4: Agent Responds & Resolves',
+                        description: 'Agent handles customer inquiry and creates order',
+                        content: `
+                            <div class="space-y-6">
+                                <div class="bg-green-50 p-6 rounded-lg border-2 border-green-300">
+                                    <h3 class="font-bold text-lg mb-3">✓ Issue Resolution</h3>
+                                    <div class="space-y-3">
+                                        <div class="bg-white p-4 rounded border-l-4 border-green-500">
+                                            <p class="font-semibold text-gray-900">Agent: Mike Chen</p>
+                                            <p class="text-sm text-gray-600 mt-1">Handled: 12 conversations</p>
+                                            <p class="text-sm text-gray-600">Resolved: 12/12 (100%)</p>
+                                            <p class="text-sm text-gray-600">Avg Response Time: 3 mins</p>
+                                        </div>
+                                        <div class="bg-white p-4 rounded border-l-4 border-green-500">
+                                            <p class="font-semibold text-gray-900">Actions Completed</p>
+                                            <ul class="text-sm text-gray-700 space-y-1 mt-2">
+                                                <li>✓ Tracked 3 orders</li>
+                                                <li>✓ Created 2 new orders</li>
+                                                <li>✓ Processed 1 refund</li>
+                                                <li>✓ Updated customer profiles</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        `,
+                        action: 'Next: Supervisor Monitoring'
+                    },
+                    {
+                        title: 'Step 5: Supervisor Monitoring',
+                        description: 'Supervisor reviews team performance',
+                        content: `
+                            <div class="space-y-6">
+                                <div class="bg-orange-50 p-6 rounded-lg border-2 border-orange-300">
+                                    <h3 class="font-bold text-lg mb-3">👨‍💼 Supervisor Dashboard</h3>
+                                    <div class="grid grid-cols-2 gap-4">
+                                        <div class="bg-white p-4 rounded border-l-4 border-orange-500">
+                                            <p class="text-xs text-gray-500 uppercase">Total Messages</p>
+                                            <p class="text-2xl font-bold">847</p>
+                                            <p class="text-xs text-green-600">All handled ✓</p>
+                                        </div>
+                                        <div class="bg-white p-4 rounded border-l-4 border-orange-500">
+                                            <p class="text-xs text-gray-500 uppercase">Avg Resolution</p>
+                                            <p class="text-2xl font-bold">4 mins</p>
+                                            <p class="text-xs text-green-600">Excellent</p>
+                                        </div>
+                                        <div class="bg-white p-4 rounded border-l-4 border-blue-500">
+                                            <p class="text-xs text-gray-500 uppercase">Customer Rating</p>
+                                            <p class="text-2xl font-bold">4.8/5 ⭐</p>
+                                        </div>
+                                        <div class="bg-white p-4 rounded border-l-4 border-green-500">
+                                            <p class="text-xs text-gray-500 uppercase">Issues Resolved</p>
+                                            <p class="text-2xl font-bold">98%</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        `,
+                        action: 'Next: Track Orders'
+                    },
+                    {
+                        title: 'Step 6: Order Fulfillment Tracking',
+                        description: 'Team tracks orders through fulfillment',
+                        content: `
+                            <div class="space-y-6">
+                                <div class="bg-indigo-50 p-6 rounded-lg border-2 border-indigo-300">
+                                    <h3 class="font-bold text-lg mb-3">📦 Orders Assigned</h3>
+                                    <div class="space-y-3">
+                                        <div class="bg-white p-3 rounded border-l-4 border-yellow-500">
+                                            <div class="flex justify-between">
+                                                <p class="font-semibold">ORD-2026-001847</p>
+                                                <span class="text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded">Processing</span>
+                                            </div>
+                                            <p class="text-sm text-gray-600 mt-1">Assigned: Emma Davis</p>
+                                        </div>
+                                        <div class="bg-white p-3 rounded border-l-4 border-blue-500">
+                                            <div class="flex justify-between">
+                                                <p class="font-semibold">ORD-2026-001848</p>
+                                                <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">Shipped</span>
+                                            </div>\n                                            <p class="text-sm text-gray-600 mt-1">Assigned: Mike Chen</p>
+                                        </div>
+                                        <div class="bg-white p-3 rounded border-l-4 border-green-500">
+                                            <div class="flex justify-between">
+                                                <p class="font-semibold">ORD-2026-001849</p>
+                                                <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">Delivered</span>
+                                            </div>
+                                            <p class="text-sm text-gray-600 mt-1">Assigned: Emma Davis</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        `,
+                        action: 'Next: View Team Analytics'
+                    },
+                    {
+                        title: 'Step 7: Team Analytics Dashboard',
+                        description: 'Complete performance metrics for the team',
+                        content: `
+                            <div class="space-y-6">
+                                <div class="bg-purple-50 p-6 rounded-lg border-2 border-purple-300">
+                                    <h3 class="font-bold text-lg mb-3">📊 Team Performance</h3>
+                                    <div class="space-y-4">
+                                        <div class="bg-white p-4 rounded border-l-4 border-purple-500">
+                                            <p class="font-semibold text-gray-900 mb-3">Leaderboard</p>
+                                            <div class="space-y-2">
+                                                <div class="flex justify-between">
+                                                    <span class="text-gray-700">🥇 Mike Chen</span>
+                                                    <span class="font-bold">156 conversations</span>
+                                                </div>
+                                                <div class="flex justify-between">
+                                                    <span class="text-gray-700">🥈 Emma Davis</span>
+                                                    <span class="font-bold">143 conversations</span>
+                                                </div>
+                                                <div class="flex justify-between">
+                                                    <span class="text-gray-700">🥉 Sarah Johnson</span>
+                                                    <span class="font-bold">128 conversations</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="grid grid-cols-3 gap-4">
+                                            <div class="bg-white p-4 rounded">
+                                                <p class="text-xs text-gray-500 uppercase">Avg Response</p>
+                                                <p class="font-bold text-2xl text-blue-600">3.5 min</p>
+                                            </div>
+                                            <div class="bg-white p-4 rounded">
+                                                <p class="text-xs text-gray-500 uppercase">Resolution Rate</p>
+                                                <p class="font-bold text-2xl text-green-600">98%</p>
+                                            </div>
+                                            <div class="bg-white p-4 rounded">
+                                                <p class="text-xs text-gray-500 uppercase">Satisfaction</p>
+                                                <p class="font-bold text-2xl text-purple-600">4.8/5</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bg-green-50 p-4 rounded-lg border-l-4 border-green-500">
+                                    <p class="text-sm text-gray-700"><strong>✓ Team Workflow Complete:</strong> 427 conversations handled, 98% satisfaction, all orders processed</p>
+                                </div>
+                            </div>
+                        `,
+                        action: 'Journey Complete ✓'
+                    }
+                ]
+            },
+            government: {
+                title: '🏛️ Government Notifications Journey',
+                color: 'from-blue-600 to-amber-600',
+                steps: [
+                    {
+                        title: 'Step 1: Create Verified Notification',
+                        description: 'Government agency creates official notification',
+                        content: `
+                            <div class="space-y-6">
+                                <div class="bg-blue-50 p-6 rounded-lg border-2 border-blue-300">
+                                    <h3 class="font-bold text-lg mb-3">🏛️ Government Notification</h3>
+                                    <div class="space-y-3">
+                                        <div class="bg-white p-4 rounded border-l-4 border-blue-500">
+                                            <p class="text-sm text-gray-600 uppercase">Notification Type</p>
+                                            <p class="font-bold text-lg">✓ Verified - Official</p>
+                                        </div>
+                                        <div class="bg-white p-4 rounded border-l-4 border-blue-500">
+                                            <p class="text-sm text-gray-600 uppercase">Content</p>
+                                            <p class="font-semibold text-gray-900 mt-2">NEET Exam Result 2026</p>
+                                            <p class="text-sm text-gray-700 mt-2">NEET 2026 results will be declared on March 15, 2026. Check your results at neet.nta.ac.in with your roll number.</p>
+                                        </div>
+                                        <div class="bg-white p-4 rounded border-l-4 border-blue-500">
+                                            <p class="text-sm text-gray-600 uppercase">Verified Badge</p>
+                                            <p class="font-bold text-blue-600">✓ Government of India</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bg-green-50 p-4 rounded-lg border-l-4 border-green-500">
+                                    <p class="text-sm text-gray-700"><strong>✓ Notification Created:</strong> Ready for targeting</p>
+                                </div>
+                            </div>
+                        `,
+                        action: 'Next: Select Regions'
+                    },
+                    {
+                        title: 'Step 2: Geo-Target Regions',
+                        description: 'Select states/regions for notification delivery',
+                        content: `
+                            <div class="space-y-6">
+                                <div class="bg-amber-50 p-6 rounded-lg border-2 border-amber-300">
+                                    <h3 class="font-bold text-lg mb-3">📍 Target Regions</h3>
+                                    <div class="bg-white p-4 rounded border-l-4 border-amber-500 space-y-3">
+                                        <div class="flex items-center space-x-2">
+                                            <input type="checkbox" checked class="w-5 h-5 text-amber-600">
+                                            <span class="text-gray-700"><strong>All India</strong> - 2.5M students</span>
+                                        </div>
+                                        <div class="text-sm text-gray-600 ml-7 space-y-1">
+                                            <p>✓ Maharashtra - 450K</p>
+                                            <p>✓ Karnataka - 380K</p>
+                                            <p>✓ Tamil Nadu - 320K</p>
+                                            <p>✓ Uttar Pradesh - 750K</p>
+                                            <p>✓ And 25 other states...</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bg-green-50 p-4 rounded-lg border-l-4 border-green-500">
+                                    <p class="text-sm text-gray-700"><strong>✓ Targeting Set:</strong> All India (2.5M students)</p>
+                                </div>
+                            </div>
+                        `,
+                        action: 'Next: Send Notification'
+                    },
+                    {
+                        title: 'Step 3: Send Official Notification',
+                        description: 'Broadcast notification to all targeted students',
+                        content: `
+                            <div class="space-y-6">
+                                <div class="bg-green-50 p-6 rounded-lg border-2 border-green-300">
+                                    <h3 class="font-bold text-lg mb-3">📤 Broadcasting</h3>
+                                    <div class="bg-white p-4 rounded space-y-4 border-l-4 border-green-500">
+                                        <div>
+                                            <div class="flex justify-between mb-2">
+                                                <span class="text-sm font-semibold text-gray-700">Delivery Status</span>
+                                                <span class="text-sm font-bold text-green-600">2,500,000 / 2,500,000</span>
+                                            </div>
+                                            <div class="w-full bg-gray-200 rounded-full h-3">
+                                                <div class="bg-green-500 h-3 rounded-full" style="width: 100%;"></div>
+                                            </div>
+                                        </div>
+                                        <div class="grid grid-cols-2 gap-4 pt-4 border-t">
+                                            <div class="text-center">
+                                                <p class="text-2xl font-bold text-green-600">2.5M</p>
+                                                <p class="text-xs text-gray-600">Delivered</p>
+                                            </div>
+                                            <div class="text-center">
+                                                <p class="text-2xl font-bold text-blue-600">0</p>
+                                                <p class="text-xs text-gray-600">Failed</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bg-green-50 p-4 rounded-lg border-l-4 border-green-500">
+                                    <p class="text-sm text-gray-700"><strong>✓ Notification Delivered:</strong> All 2.5M students received official notification</p>
+                                </div>
+                            </div>
+                        `,
+                        action: 'Next: Monitor Lead Capture'
+                    },
+                    {
+                        title: 'Step 4: Lead Capture (Interested Users)',
+                        description: 'Students showing interest provide their contact details',
+                        content: `
+                            <div class="space-y-6">
+                                <div class="bg-purple-50 p-6 rounded-lg border-2 border-purple-300">
+                                    <h3 class="font-bold text-lg mb-3">✋ Interested Students</h3>
+                                    <div class="space-y-2">
+                                        <div class="bg-white p-3 rounded border-l-4 border-red-500">
+                                            <div class="flex justify-between">
+                                                <p class="font-semibold text-gray-900">Priya Verma</p>
+                                                <span class="text-xs bg-red-100 text-red-800 px-2 py-1 rounded font-bold">HIGH INTEREST</span>
+                                            </div>
+                                            <p class="text-sm text-gray-600 mt-1">"Filled complete form + Asked 2 questions"</p>
+                                        </div>
+                                        <div class="bg-white p-3 rounded border-l-4 border-yellow-500">
+                                            <div class="flex justify-between">
+                                                <p class="font-semibold text-gray-900">Arjun Singh</p>
+                                                <span class="text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded font-bold">MED INTEREST</span>
+                                            </div>
+                                            <p class="text-sm text-gray-600 mt-1">"Opened message + Clicked link"</p>
+                                        </div>
+                                        <div class="bg-white p-3 rounded border-l-4 border-gray-400">
+                                            <div class="flex justify-between">
+                                                <p class="font-semibold text-gray-900">Anjali Desai</p>
+                                                <span class="text-xs bg-gray-100 text-gray-800 px-2 py-1 rounded font-bold">LOW INTEREST</span>
+                                            </div>
+                                            <p class="text-sm text-gray-600 mt-1">"Just received notification"</p>
+                                        </div>
+                                    </div>
+                                    <div class="mt-4 pt-4 border-t flex justify-between text-sm font-semibold">
+                                        <span>Total Leads: 847,500 (33%)</span>
+                                        <span class="text-green-600">Captured ✓</span>
+                                    </div>
+                                </div>
+                            </div>
+                        `,
+                        action: 'Next: Auto-Score Leads'
+                    },
+                    {
+                        title: 'Step 5: Automatic Lead Scoring',
+                        description: 'System scores leads based on engagement level',
+                        content: `
+                            <div class="space-y-6">
+                                <div class="bg-indigo-50 p-6 rounded-lg border-2 border-indigo-300">
+                                    <h3 class="font-bold text-lg mb-3">⭐ Lead Scoring System</h3>
+                                    <div class="space-y-3">
+                                        <div class="bg-white p-4 rounded border-l-4 border-red-500">
+                                            <div class="flex justify-between items-center">
+                                                <span class="font-semibold text-gray-900">🔴 HIGH VALUE LEADS</span>
+                                                <span class="font-bold text-red-600">234,500 leads</span>
+                                            </div>
+                                            <p class="text-xs text-gray-600 mt-1">Filled form + Asked questions + High engagement</p>
+                                        </div>
+                                        <div class="bg-white p-4 rounded border-l-4 border-yellow-500">
+                                            <div class="flex justify-between items-center">
+                                                <span class="font-semibold text-gray-900">🟡 MEDIUM VALUE LEADS</span>
+                                                <span class="font-bold text-yellow-600">405,000 leads</span>
+                                            </div>
+                                            <p class="text-xs text-gray-600 mt-1">Clicked link + Showed interest + Some engagement</p>
+                                        </div>
+                                        <div class="bg-white p-4 rounded border-l-4 border-gray-400">
+                                            <div class="flex justify-between items-center">
+                                                <span class="font-semibold text-gray-900">⚪ LOW VALUE LEADS</span>
+                                                <span class="font-bold text-gray-600">208,000 leads</span>
+                                            </div>
+                                            <p class="text-xs text-gray-600 mt-1">Received notification only</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bg-green-50 p-4 rounded-lg border-l-4 border-green-500">
+                                    <p class="text-sm text-gray-700"><strong>✓ Leads Scored:</strong> 847,500 total leads with automatic tier assignment</p>
+                                </div>
+                            </div>
+                        `,
+                        action: 'Next: Create Nurture Campaigns'
+                    },
+                    {
+                        title: 'Step 6: Lead Nurturing Campaigns',
+                        description: 'Automated campaigns for each lead tier',
+                        content: `
+                            <div class="space-y-6">
+                                <div class="bg-orange-50 p-6 rounded-lg border-2 border-orange-300">
+                                    <h3 class="font-bold text-lg mb-3">📢 Nurture Sequences</h3>
+                                    <div class="space-y-3">
+                                        <div class="bg-white p-4 rounded border-l-4 border-red-500">
+                                            <p class="font-semibold text-gray-900 mb-2">🔴 HIGH VALUE SEQUENCE</p>
+                                            <div class="text-sm text-gray-700 space-y-1">
+                                                <p>• Day 1: "Your result is ready! Get instant counseling"</p>
+                                                <p>• Day 3: "Book free consulting session"</p>
+                                                <p>• Day 7: "Limited spots available - Enroll now"</p>
+                                            </div>
+                                        </div>
+                                        <div class="bg-white p-4 rounded border-l-4 border-yellow-500">
+                                            <p class="font-semibold text-gray-900 mb-2">🟡 MEDIUM VALUE SEQUENCE</p>
+                                            <div class="text-sm text-gray-700 space-y-1">
+                                                <p>• Day 1: "Best colleges based on your rank"</p>
+                                                <p>• Day 5: "Free admission guidance"</p>
+                                                <p>• Day 10: "Scholarship opportunities"</p>
+                                            </div>
+                                        </div>
+                                        <div class="bg-white p-4 rounded border-l-4 border-gray-400">
+                                            <p class="font-semibold text-gray-900 mb-2">⚪ LOW VALUE SEQUENCE</p>
+                                            <div class="text-sm text-gray-700 space-y-1">
+                                                <p>• Day 3: "Explore college options"</p>
+                                                <p>• Day 15: "Student success stories"</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-500">
+                                    <p class="text-sm text-gray-700"><strong>📊 Status:</strong> 847,500 leads now in automated nurture sequences</p>
+                                </div>
+                            </div>
+                        `,
+                        action: 'Next: Track Conversions'
+                    },
+                    {
+                        title: 'Step 7: Conversion Tracking',
+                        description: 'Monitor lead conversion to enrolled students',
+                        content: `
+                            <div class="space-y-6">
+                                <div class="bg-purple-50 p-6 rounded-lg border-2 border-purple-300">
+                                    <h3 class="font-bold text-lg mb-3">📊 Conversion Funnel</h3>
+                                    <div class="space-y-3">
+                                        <div class="bg-white p-4 rounded border-l-4 border-blue-500">
+                                            <div class="flex justify-between">
+                                                <span class="font-semibold">Notifications Sent</span>
+                                                <span class="font-bold">2,500,000</span>
+                                            </div>
+                                        </div>
+                                        <div class="bg-white p-4 rounded border-l-4 border-blue-500">
+                                            <div class="flex justify-between">
+                                                <span class="font-semibold">Leads Captured</span>
+                                                <span class="font-bold">847,500 (34%)</span>
+                                            </div>
+                                        </div>
+                                        <div class="bg-white p-4 rounded border-l-4 border-yellow-500">
+                                            <div class="flex justify-between">
+                                                <span class="font-semibold">Filled Forms</span>
+                                                <span class="font-bold">423,750 (17%)</span>
+                                            </div>
+                                        </div>
+                                        <div class="bg-white p-4 rounded border-l-4 border-green-500">
+                                            <div class="flex justify-between">
+                                                <span class="font-semibold">Enrolled Students</span>
+                                                <span class="font-bold text-green-600">127,125 (5%)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        `,
+                        action: 'Next: View Complete Analytics'
+                    },
+                    {
+                        title: 'Step 8: Government Analytics Dashboard',
+                        description: 'Complete performance and ROI analysis',
+                        content: `
+                            <div class="space-y-6">
+                                <div class="bg-purple-50 p-6 rounded-lg border-2 border-purple-300">
+                                    <h3 class="font-bold text-lg mb-3">📊 Campaign Performance</h3>
+                                    <div class="grid grid-cols-3 gap-4">
+                                        <div class="bg-white p-4 rounded border-l-4 border-blue-500">
+                                            <p class="text-xs text-gray-500 uppercase">Total Reach</p>
+                                            <p class="text-2xl font-bold text-blue-600">2.5M</p>
+                                        </div>
+                                        <div class="bg-white p-4 rounded border-l-4 border-green-500">
+                                            <p class="text-xs text-gray-500 uppercase">Lead Capture</p>
+                                            <p class="text-2xl font-bold text-green-600">847K (34%)</p>
+                                        </div>
+                                        <div class="bg-white p-4 rounded border-l-4 border-purple-500">
+                                            <p class="text-xs text-gray-500 uppercase">Enrollments</p>
+                                            <p class="text-2xl font-bold text-purple-600">127K (5%)</p>
+                                        </div>
+                                    </div>
+                                    <div class="mt-4 pt-4 border-t space-y-2">
+                                        <div class="flex justify-between">
+                                            <span class="text-gray-700">Cost per Lead:</span>\n                                            <span class="font-bold">₹12</span>\n                                        </div>\n                                        <div class=\"flex justify-between\">\n                                            <span class=\"text-gray-700\">Cost per Enrollment:</span>\n                                            <span class=\"font-bold text-green-600\">₹236</span>\n                                        </div>\n                                    </div>\n                                </div>\n                                <div class=\"bg-green-50 p-4 rounded-lg border-l-4 border-green-500\">\n                                    <p class=\"text-sm text-gray-700\"><strong>✓ Government Campaign Complete:</strong> 2.5M notifications → 847K leads → 127K enrollments</p>\n                                </div>\n                            </div>\n                        `,
+                        action: 'Journey Complete ✓'
+                    }
+                ]
+            }
+        };
+
+        function startJourney(journeyKey) {
+            const journey = flows[journeyKey];
+            const container = document.getElementById('flowContainer');
+            const progressContainer = document.getElementById('progressSteps');
+            const content = document.getElementById('flowContent');
+            
+            // Create progress indicators
+            let progressHTML = '';
+            journey.steps.forEach((step, index) => {
+                progressHTML += `
+                    <div class="text-center">
+                        <button onclick="goToStep(${index})" class="step-dot step-pending mb-2" id="step-${index}">${index + 1}</button>
+                        <p class="text-xs text-gray-600 hidden md:block">Step ${index + 1}</p>
+                    </div>
+                `;
+            });
+            progressContainer.innerHTML = progressHTML;
+            
+            // Show first step
+            goToStep(0, journeyKey);
+            container.classList.remove('hidden');
+            container.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        let currentStep = 0;
+        let currentJourney = 'inquiry';
+
+        function goToStep(stepIndex, journeyKey) {
+            if (journeyKey) currentJourney = journeyKey;
+            
+            const journey = flows[currentJourney];
+            const step = journey.steps[stepIndex];
+            currentStep = stepIndex;
+            
+            // Update progress indicators
+            document.querySelectorAll('.step-dot').forEach((dot, index) => {
+                dot.className = 'step-dot step-pending mb-2';
+                if (index < currentStep) {
+                    dot.className = 'step-dot step-completed mb-2';
+                } else if (index === currentStep) {
+                    dot.className = 'step-dot step-active mb-2';
+                }
+            });
+            
+            // Update content
+            const flowContent = document.getElementById('flowContent');
+            flowContent.innerHTML = `
+                <div class="fade-in">
+                    <div class="mb-8">
+                        <h2 class="text-3xl font-bold text-gray-900 mb-2">${step.title}</h2>
+                        <p class="text-lg text-gray-600">${step.description}</p>
+                        <div class="mt-4 text-sm text-gray-500">
+                            Progress: Step ${stepIndex + 1} of ${journey.steps.length}
+                        </div>
+                    </div>
+                    
+                    <div class="mb-8">
+                        ${step.content}
+                    </div>
+                    
+                    <div class="flex gap-4 mt-8">
+                        ${currentStep > 0 ? `
+                            <button onclick="goToStep(${currentStep - 1})" class="px-6 py-3 bg-gray-500 hover:bg-gray-600 text-white rounded-lg font-semibold">
+                                ← Previous Step
+                            </button>
+                        ` : ''}
+                        
+                        ${currentStep < journey.steps.length - 1 ? `
+                            <button onclick="goToStep(${currentStep + 1})" class="flex-1 px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg font-semibold">
+                                ${step.action} →
+                            </button>
+                        ` : `
+                            <button onclick="closeFlow()" class="flex-1 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold">
+                                View Another Journey
+                            </button>
+                        `}
+                    </div>
+                </div>
+            `;
+        }
+
+        function closeFlow() {
+            document.getElementById('flowContainer').classList.add('hidden');
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+    </script>
+</body>
+</html>

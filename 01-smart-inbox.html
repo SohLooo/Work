@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Inbox & Message Management</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50">
+    <div class="flex h-screen">
+        <!-- Sidebar -->
+        <div class="w-64 bg-white border-r border-gray-200 flex flex-col">
+            <div class="p-6 border-b border-gray-200">
+                <h1 class="text-2xl font-bold text-green-600">WhatsApp CRM</h1>
+                <p class="text-sm text-gray-500 mt-1">Business Platform</p>
+            </div>
+            
+            <nav class="flex-1 p-4 space-y-2">
+                <div class="px-4 py-2 bg-green-50 text-green-700 rounded-lg font-semibold">
+                    <span class="inline-block">📧 Inbox</span>
+                </div>
+                <a href="03-campaign-creation.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-lg cursor-pointer">📤 Campaigns</a>
+                <a href="04-order-tracking.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-lg cursor-pointer">📦 Orders</a>
+                <a href="02-customer-segmentation.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-lg cursor-pointer">👥 Contacts</a>
+                <a href="05-team-management.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-lg cursor-pointer">👨‍💼 Team</a>
+                <a href="06-analytics.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-lg cursor-pointer">📊 Analytics</a>
+            </nav>
+            
+            <div class="p-4 border-t border-gray-200">
+                <div class="bg-blue-50 rounded-lg p-3">
+                    <p class="text-sm font-semibold text-blue-900">John Doe</p>
+                    <p class="text-xs text-blue-700">Admin</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex-1 flex flex-col">
+            <!-- Header -->
+            <div class="bg-white border-b border-gray-200 px-8 py-4 flex justify-between items-center">
+                <h2 class="text-2xl font-bold text-gray-900">Inbox</h2>
+                <div class="flex gap-3">
+                    <input type="text" placeholder="Search conversations..." 
+                        class="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
+                    <button class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700">New Message</button>
+                </div>
+            </div>
+
+            <!-- Filter Tabs -->
+            <div class="bg-white border-b border-gray-200 px-8 py-3 flex gap-6">
+                <button class="border-b-2 border-green-600 text-green-600 font-semibold pb-2">Unread <span class="bg-red-500 text-white text-xs rounded-full px-2">12</span></button>
+                <button class="text-gray-600 hover:text-gray-900 pb-2">Pending <span class="bg-yellow-500 text-white text-xs rounded-full px-2">8</span></button>
+                <button class="text-gray-600 hover:text-gray-900 pb-2">Resolved <span class="bg-green-500 text-white text-xs rounded-full px-2">45</span></button>
+                <button class="text-gray-600 hover:text-gray-900 pb-2">All</button>
+                <button class="ml-auto text-gray-600 hover:text-gray-900">⚙️ Filters</button>
+            </div>
+
+            <!-- Conversation List & Detail -->
+            <div class="flex-1 flex gap-6 overflow-hidden">
+                <!-- Conversation List -->
+                <div class="w-80 border-r border-gray-200 overflow-y-auto bg-gray-50">
+                    <!-- Conversation Item - Unread -->
+                    <div class="bg-white border-b border-gray-200 p-4 cursor-pointer hover:bg-gray-50 hover:shadow-sm transition">
+                        <div class="flex items-center gap-3 mb-2">
+                            <div class="w-12 h-12 bg-green-600 text-white rounded-full flex items-center justify-center font-bold">AC</div>
+                            <div class="flex-1">
+                                <p class="font-semibold text-gray-900">Acme Corporation</p>
+                                <p class="text-xs text-gray-500">Albert Chen</p>
+                            </div>
+                            <span class="text-xs text-gray-500">2:15 PM</span>
+                        </div>
+                        <p class="text-sm text-gray-700 line-clamp-2">Hi, I wanted to ask about bulk orders for our office...</p>
+                        <div class="mt-2 flex gap-2">
+                            <span class="inline-block bg-blue-100 text-blue-700 text-xs px-2 py-1 rounded">Wholesale</span>
+                            <span class="inline-block bg-purple-100 text-purple-700 text-xs px-2 py-1 rounded">VIP</span>
+                        </div>
+                    </div>
+
+                    <!-- Conversation Item - Pending -->
+                    <div class="bg-white border-b border-gray-200 p-4 cursor-pointer hover:bg-gray-50 transition">
+                        <div class="flex items-center gap-3 mb-2">
+                            <div class="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold">JM</div>
+                            <div class="flex-1">
+                                <p class="font-semibold text-gray-900">Jane Mitchell</p>
+                                <p class="text-xs text-gray-500">Individual</p>
+                            </div>
+                            <span class="text-xs text-gray-500">Yesterday</span>
+                        </div>
+                        <p class="text-sm text-gray-600 line-clamp-2">When will the product be back in stock?</p>
+                        <div class="mt-2">
+                            <span class="inline-block bg-yellow-100 text-yellow-700 text-xs px-2 py-1 rounded">⏱️ Pending Response</span>
+                        </div>
+                    </div>
+
+                    <!-- Conversation Item - Assigned -->
+                    <div class="bg-white border-b border-gray-200 p-4 cursor-pointer hover:bg-gray-50 transition">
+                        <div class="flex items-center gap-3 mb-2">
+                            <div class="w-12 h-12 bg-orange-600 text-white rounded-full flex items-center justify-center font-bold">RK</div>
+                            <div class="flex-1">
+                                <p class="font-semibold text-gray-900">Raj Kumar</p>
+                                <p class="text-xs text-gray-500">B2B Partner</p>
+                            </div>
+                            <span class="text-xs text-gray-500">3 days ago</span>
+                        </div>
+                        <p class="text-sm text-gray-600 line-clamp-2">Order #12345 shipment confirmation</p>
+                        <div class="mt-2">
+                            <span class="inline-block bg-green-100 text-green-700 text-xs px-2 py-1 rounded">👤 Assigned to Sarah</span>
+                        </div>
+                    </div>
+
+                    <!-- Conversation Item - Resolved -->
+                    <div class="bg-white border-b border-gray-200 p-4 cursor-pointer hover:bg-gray-50 transition opacity-60">
+                        <div class="flex items-center gap-3 mb-2">
+                            <div class="w-12 h-12 bg-gray-600 text-white rounded-full flex items-center justify-center font-bold">LP</div>
+                            <div class="flex-1">
+                                <p class="font-semibold text-gray-900">Lisa Park</p>
+                                <p class="text-xs text-gray-500">First-time buyer</p>
+                            </div>
+                            <span class="text-xs text-gray-500">Week ago</span>
+                        </div>
+                        <p class="text-sm text-gray-600 line-clamp-2">Thank you for the great service!</p>
+                        <div class="mt-2">
+                            <span class="inline-block bg-gray-100 text-gray-700 text-xs px-2 py-1 rounded">✓ Resolved</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Conversation Detail -->
+                <div class="flex-1 flex flex-col overflow-hidden bg-white">
+                    <!-- Conversation Header -->
+                    <div class="border-b border-gray-200 p-6 flex justify-between items-center">
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900">Acme Corporation</h3>
+                            <p class="text-sm text-gray-500">Albert Chen • Wholesale, VIP</p>
+                        </div>
+                        <div class="flex gap-3">
+                            <button class="p-2 hover:bg-gray-100 rounded-lg">📞</button>
+                            <button class="p-2 hover:bg-gray-100 rounded-lg">ℹ️</button>
+                            <button class="p-2 hover:bg-gray-100 rounded-lg">⋮</button>
+                        </div>
+                    </div>
+
+                    <!-- Messages Thread -->
+                    <div class="flex-1 overflow-y-auto p-6 space-y-4">
+                        <!-- Incoming Message -->
+                        <div class="flex justify-start">
+                            <div class="bg-gray-100 rounded-lg p-4 max-w-xs">
+                                <p class="text-gray-900">Hi, I wanted to ask about bulk orders for our office. Do you have volume discounts?</p>
+                                <p class="text-xs text-gray-500 mt-2">2:15 PM</p>
+                            </div>
+                        </div>
+
+                        <!-- Internal Note Section -->
+                        <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 my-4">
+                            <p class="text-sm font-semibold text-blue-900">📝 Internal Notes</p>
+                            <p class="text-sm text-blue-800 mt-2">This is our largest wholesale partner. They usually buy in bulk of 500+ units. Offer 15-20% discount.</p>
+                            <p class="text-xs text-blue-600 mt-2">Added by Sarah • 30 mins ago</p>
+                        </div>
+
+                        <!-- Outgoing Message -->
+                        <div class="flex justify-end">
+                            <div class="bg-green-600 text-white rounded-lg p-4 max-w-xs">
+                                <p>Yes, absolutely! We offer tiered volume discounts. Let me send you our wholesale pricing.</p>
+                                <p class="text-xs text-green-100 mt-2">2:30 PM • Sent ✓</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Message Composer -->
+                    <div class="border-t border-gray-200 p-6 bg-gray-50">
+                        <div class="flex gap-3 mb-3">
+                            <button class="text-gray-600 hover:text-gray-900 text-lg">📎</button>
+                            <button class="text-gray-600 hover:text-gray-900 text-lg">😊</button>
+                            <button class="text-gray-600 hover:text-gray-900 text-lg">🎤</button>
+                        </div>
+                        <div class="flex gap-3">
+                            <input type="text" placeholder="Type your message..." 
+                                class="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
+                            <button class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700">Send</button>
+                        </div>
+                    </div>
+
+                    <!-- Quick Actions Bar -->
+                    <div class="border-t border-gray-200 px-6 py-3 bg-white flex gap-2 justify-between">
+                        <div class="flex gap-2">
+                            <button class="px-3 py-2 bg-yellow-50 text-yellow-700 rounded-lg text-sm hover:bg-yellow-100">⏱️ Mark Pending</button>
+                            <button class="px-3 py-2 bg-green-50 text-green-700 rounded-lg text-sm hover:bg-green-100">✓ Mark Resolved</button>
+                            <button class="px-3 py-2 bg-blue-50 text-blue-700 rounded-lg text-sm hover:bg-blue-100">👤 Assign</button>
+                        </div>
+                        <button class="px-3 py-2 bg-purple-50 text-purple-700 rounded-lg text-sm hover:bg-purple-100">🏷️ Add Tag</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edge Case: Assign Modal -->
+    <div id="assignModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+        <div class="bg-white rounded-lg shadow-lg w-96 p-6">
+            <h3 class="text-lg font-bold text-gray-900 mb-4">Assign to Team Member</h3>
+            <div class="space-y-2 mb-4">
+                <label class="flex items-center p-3 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer">
+                    <input type="radio" name="agent" class="w-4 h-4 text-green-600">
+                    <span class="ml-3">
+                        <p class="font-semibold text-gray-900">Sarah Johnson</p>
+                        <p class="text-xs text-gray-500">Response time: 5 mins</p>
+                    </span>
+                </label>
+                <label class="flex items-center p-3 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer">
+                    <input type="radio" name="agent" class="w-4 h-4 text-green-600">
+                    <span class="ml-3">
+                        <p class="font-semibold text-gray-900">Mike Chen</p>
+                        <p class="text-xs text-gray-500">Response time: 8 mins</p>
+                    </span>
+                </label>
+                <label class="flex items-center p-3 border border-gray-200 rounded-lg hover:bg-gray-50 cursor-pointer">
+                    <input type="radio" name="agent" class="w-4 h-4 text-green-600">
+                    <span class="ml-3">
+                        <p class="font-semibold text-gray-900">Emma Davis</p>
+                        <p class="text-xs text-gray-500">Response time: 12 mins</p>
+                    </span>
+                </label>
+            </div>
+            <div class="flex gap-3">
+                <button class="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50">Cancel</button>
+                <button class="flex-1 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700">Assign</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Footer -->
+    <div class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 px-6 py-4">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="00-design-index.html" class="text-blue-600 hover:underline font-semibold">← Back to Index</a>
+            <div class="flex gap-4">
+                <span class="text-sm text-gray-600">You are viewing:</span>
+                <a href="01-smart-inbox.html" class="px-3 py-1 bg-green-100 text-green-700 rounded font-semibold">📧 Smart Inbox</a>
+                <a href="02-customer-segmentation.html" class="px-3 py-1 text-gray-600 hover:bg-gray-100 rounded">👥 Next: Contacts</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

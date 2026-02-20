@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Database & Segmentation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50">
+    <div class="flex h-screen">
+        <!-- Sidebar -->
+        <div class="w-64 bg-white border-r border-gray-200 flex flex-col">
+            <div class="p-6 border-b border-gray-200">
+                <h1 class="text-2xl font-bold text-green-600">WhatsApp CRM</h1>
+            </div>
+            <nav class="flex-1 p-4 space-y-2">
+                <a href="01-smart-inbox.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-lg cursor-pointer">📧 Inbox</a>
+                <a href="03-campaign-creation.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-lg cursor-pointer">📤 Campaigns</a>
+                <a href="04-order-tracking.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-lg cursor-pointer">📦 Orders</a>
+                <div class="px-4 py-2 bg-green-50 text-green-700 rounded-lg font-semibold">👥 Contacts</div>
+                <a href="05-team-management.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-lg cursor-pointer">👨‍💼 Team</a>
+                <a href="06-analytics.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-lg cursor-pointer">📊 Analytics</a>
+                <a href="07-government-enterprise.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-lg cursor-pointer">🏛️ Government</a>
+            </nav>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex-1 flex flex-col">
+            <!-- Header -->
+            <div class="bg-white border-b border-gray-200 px-8 py-4 flex justify-between items-center">
+                <h2 class="text-2xl font-bold text-gray-900">Customer Database</h2>
+                <button class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700">+ Add Contact</button>
+            </div>
+
+            <!-- Tabs -->
+            <div class="bg-white border-b border-gray-200 px-8 py-3 flex gap-6">
+                <button class="border-b-2 border-green-600 text-green-600 font-semibold pb-2">All Customers (2,847)</button>
+                <button class="text-gray-600 hover:text-gray-900 pb-2">Segments (12)</button>
+                <button class="text-gray-600 hover:text-gray-900 pb-2">Analytics</button>
+            </div>
+
+            <!-- Content Area -->
+            <div class="flex-1 flex gap-6 overflow-hidden">
+                <!-- Left: Customer List with Filters -->
+                <div class="w-96 border-r border-gray-200 overflow-y-auto bg-gray-50">
+                    <!-- Search & Filter -->
+                    <div class="sticky top-0 bg-white border-b border-gray-200 p-4 space-y-3">
+                        <input type="text" placeholder="Search customers..." 
+                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
+                        <details class="w-full">
+                            <summary class="cursor-pointer text-sm font-semibold text-gray-700 hover:text-gray-900">🔽 Filter by Segment</summary>
+                            <div class="mt-2 space-y-2 pl-4 border-l-2 border-gray-300">
+                                <label class="flex items-center text-sm">
+                                    <input type="checkbox" class="w-4 h-4 text-green-600" checked>
+                                    <span class="ml-2">Repeat Customers (342)</span>
+                                </label>
+                                <label class="flex items-center text-sm">
+                                    <input type="checkbox" class="w-4 h-4 text-green-600">
+                                    <span class="ml-2">VIP (45)</span>
+                                </label>
+                                <label class="flex items-center text-sm">
+                                    <input type="checkbox" class="w-4 h-4 text-green-600">
+                                    <span class="ml-2">First-time Buyer (891)</span>
+                                </label>
+                                <label class="flex items-center text-sm">
+                                    <input type="checkbox" class="w-4 h-4 text-green-600">
+                                    <span class="ml-2">Wholesale (126)</span>
+                                </label>
+                                <label class="flex items-center text-sm">
+                                    <input type="checkbox" class="w-4 h-4 text-green-600">
+                                    <span class="ml-2">Enquired but No Purchase (543)</span>
+                                </label>
+                            </div>
+                        </details>
+                        <details class="w-full">
+                            <summary class="cursor-pointer text-sm font-semibold text-gray-700 hover:text-gray-900">🔽 Filter by Location</summary>
+                            <div class="mt-2 space-y-2 pl-4 border-l-2 border-gray-300">
+                                <label class="flex items-center text-sm">
+                                    <input type="checkbox" class="w-4 h-4 text-green-600" checked>
+                                    <span class="ml-2">California (456)</span>
+                                </label>
+                                <label class="flex items-center text-sm">
+                                    <input type="checkbox" class="w-4 h-4 text-green-600">
+                                    <span class="ml-2">Texas (342)</span>
+                                </label>
+                                <label class="flex items-center text-sm">
+                                    <input type="checkbox" class="w-4 h-4 text-green-600">
+                                    <span class="ml-2">New York (289)</span>
+                                </label>
+                            </div>
+                        </details>
+                    </div>
+
+                    <!-- Customer List Items -->
+                    <div class="space-y-1">
+                        <!-- Customer Item - Repeat Customer -->
+                        <div class="mx-2 p-3 bg-white rounded-lg border-l-4 border-green-500 cursor-pointer hover:shadow-md transition">
+                            <div class="flex items-center gap-3 mb-2">
+                                <div class="w-10 h-10 bg-green-600 text-white rounded-full flex items-center justify-center font-bold text-sm">AC</div>
+                                <div class="flex-1 min-w-0">
+                                    <p class="font-semibold text-gray-900 truncate">Acme Corporation</p>
+                                    <p class="text-xs text-gray-500">+1-234-567-8900</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-1 flex-wrap text-xs">
+                                <span class="bg-green-100 text-green-700 px-2 py-1 rounded">Repeat</span>
+                                <span class="bg-purple-100 text-purple-700 px-2 py-1 rounded">VIP</span>
+                                <span class="bg-blue-100 text-blue-700 px-2 py-1 rounded">Wholesale</span>
+                            </div>
+                            <p class="text-xs text-gray-500 mt-1">Last purchase: 5 days ago • Total spent: $12,450</p>
+                        </div>
+
+                        <!-- Customer Item - First-time Buyer -->
+                        <div class="mx-2 p-3 bg-white rounded-lg border-l-4 border-blue-500 cursor-pointer hover:shadow-md transition">
+                            <div class="flex items-center gap-3 mb-2">
+                                <div class="w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-sm">JM</div>
+                                <div class="flex-1 min-w-0">
+                                    <p class="font-semibold text-gray-900 truncate">Jane Mitchell</p>
+                                    <p class="text-xs text-gray-500">+1-234-567-8901</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-1 flex-wrap text-xs">
+                                <span class="bg-blue-100 text-blue-700 px-2 py-1 rounded">First-time</span>
+                            </div>
+                            <p class="text-xs text-gray-500 mt-1">First purchase: 2 months ago • Total spent: $89</p>
+                        </div>
+
+                        <!-- Customer Item - Enquiry -->
+                        <div class="mx-2 p-3 bg-white rounded-lg border-l-4 border-orange-500 cursor-pointer hover:shadow-md transition">
+                            <div class="flex items-center gap-3 mb-2">
+                                <div class="w-10 h-10 bg-orange-600 text-white rounded-full flex items-center justify-center font-bold text-sm">RK</div>
+                                <div class="flex-1 min-w-0">
+                                    <p class="font-semibold text-gray-900 truncate">Raj Kumar</p>
+                                    <p class="text-xs text-gray-500">+1-234-567-8902</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-1 flex-wrap text-xs">
+                                <span class="bg-orange-100 text-orange-700 px-2 py-1 rounded">Enquiry Only</span>
+                            </div>
+                            <p class="text-xs text-gray-500 mt-1">Last contact: 15 days ago • Never purchased</p>
+                        </div>
+
+                        <!-- Customer Item - Inactive -->
+                        <div class="mx-2 p-3 bg-white rounded-lg border-l-4 border-gray-300 cursor-pointer hover:shadow-md transition opacity-60">
+                            <div class="flex items-center gap-3 mb-2">
+                                <div class="w-10 h-10 bg-gray-400 text-white rounded-full flex items-center justify-center font-bold text-sm">LP</div>
+                                <div class="flex-1 min-w-0">
+                                    <p class="font-semibold text-gray-900 truncate">Lisa Park</p>
+                                    <p class="text-xs text-gray-500">+1-234-567-8903</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-1 flex-wrap text-xs">
+                                <span class="bg-gray-100 text-gray-700 px-2 py-1 rounded">Inactive</span>
+                            </div>
+                            <p class="text-xs text-gray-500 mt-1">Last contact: 6 months ago</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Customer Detail View -->
+                <div class="flex-1 flex flex-col overflow-hidden bg-white">
+                    <!-- Customer Header -->
+                    <div class="border-b border-gray-200 p-6">
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="flex items-center gap-4">
+                                <div class="w-16 h-16 bg-green-600 text-white rounded-full flex items-center justify-center font-bold text-2xl">AC</div>
+                                <div>
+                                    <h3 class="text-2xl font-bold text-gray-900">Acme Corporation</h3>
+                                    <p class="text-gray-600">+1-234-567-8900 • albert.chen@acme.com</p>
+                                </div>
+                            </div>
+                            <button class="text-gray-600 hover:text-gray-900 text-2xl">⋮</button>
+                        </div>
+
+                        <!-- Quick Stats -->
+                        <div class="grid grid-cols-4 gap-4">
+                            <div class="bg-green-50 p-3 rounded-lg">
+                                <p class="text-sm text-gray-600">Total Spent</p>
+                                <p class="text-xl font-bold text-green-600">$12,450</p>
+                            </div>
+                            <div class="bg-blue-50 p-3 rounded-lg">
+                                <p class="text-sm text-gray-600">Purchases</p>
+                                <p class="text-xl font-bold text-blue-600">24</p>
+                            </div>
+                            <div class="bg-orange-50 p-3 rounded-lg">
+                                <p class="text-sm text-gray-600">Last Purchase</p>
+                                <p class="text-xl font-bold text-orange-600">5 days ago</p>
+                            </div>
+                            <div class="bg-purple-50 p-3 rounded-lg">
+                                <p class="text-sm text-gray-600">Customer Since</p>
+                                <p class="text-xl font-bold text-purple-600">2 years</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tabs -->
+                    <div class="border-b border-gray-200 px-6 flex gap-6">
+                        <button class="border-b-2 border-green-600 text-green-600 font-semibold py-3">Overview</button>
+                        <button class="text-gray-600 hover:text-gray-900 py-3">Purchase History</button>
+                        <button class="text-gray-600 hover:text-gray-900 py-3">Interactions</button>
+                        <button class="text-gray-600 hover:text-gray-900 py-3">Tags</button>
+                    </div>
+
+                    <!-- Customer Overview -->
+                    <div class="flex-1 overflow-y-auto p-6 space-y-6">
+                        <!-- Segments -->
+                        <div>
+                            <h4 class="font-semibold text-gray-900 mb-3">📊 Current Segments</h4>
+                            <div class="space-y-2">
+                                <div class="flex items-center justify-between p-3 bg-green-50 border border-green-200 rounded-lg">
+                                    <span class="font-semibold text-green-700">Repeat Customers</span>
+                                    <button class="text-green-600 hover:text-green-700">✕</button>
+                                </div>
+                                <div class="flex items-center justify-between p-3 bg-purple-50 border border-purple-200 rounded-lg">
+                                    <span class="font-semibold text-purple-700">VIP</span>
+                                    <button class="text-purple-600 hover:text-purple-700">✕</button>
+                                </div>
+                                <div class="flex items-center justify-between p-3 bg-blue-50 border border-blue-200 rounded-lg">
+                                    <span class="font-semibold text-blue-700">Wholesale</span>
+                                    <button class="text-blue-600 hover:text-blue-700">✕</button>
+                                </div>
+                            </div>
+                            <button class="mt-3 px-4 py-2 border border-green-600 text-green-600 rounded-lg hover:bg-green-50">+ Add to Segment</button>
+                        </div>
+
+                        <!-- Behavior Summary -->
+                        <div>
+                            <h4 class="font-semibold text-gray-900 mb-3">📈 Behavior</h4>
+                            <div class="grid grid-cols-2 gap-3">
+                                <div class="p-3 border border-gray-200 rounded-lg">
+                                    <p class="text-sm text-gray-600">Avg Order Value</p>
+                                    <p class="text-lg font-bold text-gray-900">$519</p>
+                                </div>
+                                <div class="p-3 border border-gray-200 rounded-lg">
+                                    <p class="text-sm text-gray-600">Purchase Frequency</p>
+                                    <p class="text-lg font-bold text-gray-900">Every 20 days</p>
+                                </div>
+                                <div class="p-3 border border-gray-200 rounded-lg">
+                                    <p class="text-sm text-gray-600">Engagement Rate</p>
+                                    <p class="text-lg font-bold text-gray-900">94%</p>
+                                </div>
+                                <div class="p-3 border border-gray-200 rounded-lg">
+                                    <p class="text-sm text-gray-600">Response Time</p>
+                                    <p class="text-lg font-bold text-gray-900">3 mins</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Recent Interactions -->
+                        <div>
+                            <h4 class="font-semibold text-gray-900 mb-3">💬 Recent Activity</h4>
+                            <div class="space-y-2">
+                                <div class="p-3 border border-gray-200 rounded-lg text-sm">
+                                    <p class="font-semibold text-gray-900">Order #12345 Delivered</p>
+                                    <p class="text-gray-600">5 days ago</p>
+                                </div>
+                                <div class="p-3 border border-gray-200 rounded-lg text-sm">
+                                    <p class="font-semibold text-gray-900">Opened Campaign: Spring Sale</p>
+                                    <p class="text-gray-600">1 week ago</p>
+                                </div>
+                                <div class="p-3 border border-gray-200 rounded-lg text-sm">
+                                    <p class="font-semibold text-gray-900">Replied to Message</p>
+                                    <p class="text-gray-600">2 weeks ago</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Action Bar -->
+                    <div class="border-t border-gray-200 p-6 bg-gray-50 flex gap-3">
+                        <button class="flex-1 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 font-semibold">Send Campaign</button>
+                        <button class="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-100">View All Orders</button>
+                        <button class="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-100">⋮ More</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Segment Creation Modal -->
+    <div id="segmentModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+        <div class="bg-white rounded-lg shadow-lg w-full max-w-2xl p-6">
+            <h3 class="text-2xl font-bold text-gray-900 mb-6">Create New Segment</h3>
+            
+            <div class="space-y-6">
+                <!-- Segment Type -->
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-3">Segment Type</label>
+                    <div class="grid grid-cols-2 gap-3">
+                        <label class="p-3 border-2 border-green-600 bg-green-50 rounded-lg cursor-pointer">
+                            <input type="radio" name="segmentType" class="w-4 h-4 text-green-600" checked>
+                            <span class="ml-2 font-semibold text-green-700">By Behavior</span>
+                        </label>
+                        <label class="p-3 border border-gray-300 hover:border-gray-400 rounded-lg cursor-pointer">
+                            <input type="radio" name="segmentType" class="w-4 h-4 text-green-600">
+                            <span class="ml-2 font-semibold text-gray-700">By Location</span>
+                        </label>
+                        <label class="p-3 border border-gray-300 hover:border-gray-400 rounded-lg cursor-pointer">
+                            <input type="radio" name="segmentType" class="w-4 h-4 text-green-600">
+                            <span class="ml-2 font-semibold text-gray-700">By Tags</span>
+                        </label>
+                        <label class="p-3 border border-gray-300 hover:border-gray-400 rounded-lg cursor-pointer">
+                            <input type="radio" name="segmentType" class="w-4 h-4 text-green-600">
+                            <span class="ml-2 font-semibold text-gray-700">By Purchase</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Criteria -->
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-3">Criteria</label>
+                    <div class="space-y-2">
+                        <label class="flex items-center p-3 border border-gray-200 rounded-lg hover:bg-gray-50">
+                            <input type="checkbox" class="w-4 h-4 text-green-600" checked>
+                            <span class="ml-3">Repeat Customers (2+ purchases)</span>
+                        </label>
+                        <label class="flex items-center p-3 border border-gray-200 rounded-lg hover:bg-gray-50">
+                            <input type="checkbox" class="w-4 h-4 text-green-600">
+                            <span class="ml-3">High Lifetime Value ($1000+)</span>
+                        </label>
+                        <label class="flex items-center p-3 border border-gray-200 rounded-lg hover:bg-gray-50">
+                            <input type="checkbox" class="w-4 h-4 text-green-600">
+                            <span class="ml-3">Purchased in last 30 days</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Preview -->
+                <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                    <p class="text-sm font-semibold text-blue-900">📊 Estimated Size: 347 contacts</p>
+                </div>
+            </div>
+
+            <div class="flex gap-3 mt-6">
+                <button class="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50">Cancel</button>
+                <button class="flex-1 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 font-semibold">Create Segment</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Footer -->
+    <div class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 px-6 py-4">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="00-design-index.html" class="text-blue-600 hover:underline font-semibold">← Back to Index</a>
+            <div class="flex gap-4">
+                <span class="text-sm text-gray-600">You are viewing:</span>
+                <a href="02-customer-segmentation.html" class="px-3 py-1 bg-blue-100 text-blue-700 rounded font-semibold">👥 Contacts</a>
+                <a href="03-campaign-creation.html" class="px-3 py-1 text-gray-600 hover:bg-gray-100 rounded">📤 Next: Campaigns</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

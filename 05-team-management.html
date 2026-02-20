@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team & Role Management</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50">
+    <div class="flex h-screen">
+        <!-- Sidebar -->
+        <div class="w-64 bg-white border-r border-gray-200 flex flex-col">
+            <div class="p-6 border-b border-gray-200">
+                <h1 class="text-2xl font-bold text-green-600">WhatsApp CRM</h1>
+            </div>
+            <nav class="flex-1 p-4 space-y-2">
+                <a href="01-smart-inbox.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-lg cursor-pointer">📧 Inbox</a>
+                <a href="03-campaign-creation.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-lg cursor-pointer">📤 Campaigns</a>
+                <a href="04-order-tracking.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-lg cursor-pointer">📦 Orders</a>
+                <a href="02-customer-segmentation.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-lg cursor-pointer">👥 Contacts</a>
+                <div class="px-4 py-2 bg-green-50 text-green-700 rounded-lg font-semibold">👨‍💼 Team</div>
+                <a href="06-analytics.html" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-lg cursor-pointer">📊 Analytics</a>
+            </nav>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex-1 flex flex-col">
+            <!-- Header -->
+            <div class="bg-white border-b border-gray-200 px-8 py-4 flex justify-between items-center">
+                <h2 class="text-2xl font-bold text-gray-900">Team Management</h2>
+                <button class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700">+ Add Member</button>
+            </div>
+
+            <!-- Tabs -->
+            <div class="bg-white border-b border-gray-200 px-8 py-3 flex gap-6">
+                <button class="border-b-2 border-green-600 text-green-600 font-semibold pb-2">Members (8)</button>
+                <button class="text-gray-600 hover:text-gray-900 pb-2">Roles & Permissions</button>
+                <button class="text-gray-600 hover:text-gray-900 pb-2">Activity Log</button>
+            </div>
+
+            <!-- Content Area -->
+            <div class="flex-1 overflow-y-auto bg-gray-50 p-8">
+                <!-- Team Overview Stats -->
+                <div class="grid grid-cols-4 gap-4 mb-8">
+                    <div class="bg-white rounded-lg p-4 border border-gray-200">
+                        <p class="text-sm text-gray-600">Total Members</p>
+                        <p class="text-3xl font-bold text-gray-900 mt-1">8</p>
+                        <p class="text-xs text-gray-500 mt-2">2 online now</p>
+                    </div>
+                    <div class="bg-white rounded-lg p-4 border border-gray-200">
+                        <p class="text-sm text-gray-600">Avg Response Time</p>
+                        <p class="text-3xl font-bold text-green-600 mt-1">5.2m</p>
+                        <p class="text-xs text-gray-500 mt-2">↓ 12% vs last week</p>
+                    </div>
+                    <div class="bg-white rounded-lg p-4 border border-gray-200">
+                        <p class="text-sm text-gray-600">Messages Handled</p>
+                        <p class="text-3xl font-bold text-blue-600 mt-1">2,547</p>
+                        <p class="text-xs text-gray-500 mt-2">This week</p>
+                    </div>
+                    <div class="bg-white rounded-lg p-4 border border-gray-200">
+                        <p class="text-sm text-gray-600">Open Conversations</p>
+                        <p class="text-3xl font-bold text-orange-600 mt-1">34</p>
+                        <p class="text-xs text-gray-500 mt-2">Across all agents</p>
+                    </div>
+                </div>
+
+                <!-- Team Members List -->
+                <div class="bg-white rounded-lg border border-gray-200">
+                    <div class="p-6 border-b border-gray-200">
+                        <h3 class="text-lg font-bold text-gray-900">👥 Team Members</h3>
+                    </div>
+
+                    <div class="divide-y divide-gray-200">
+                        <!-- Member 1 - Admin -->
+                        <div class="p-6 flex items-start justify-between hover:bg-gray-50 transition">
+                            <div class="flex items-start gap-4 flex-1">
+                                <div class="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-lg">JD</div>
+                                <div>
+                                    <div class="flex items-center gap-2">
+                                        <p class="font-semibold text-gray-900">John Doe</p>
+                                        <span class="px-2 py-1 bg-blue-100 text-blue-700 text-xs rounded font-semibold">Admin</span>
+                                        <span class="w-2 h-2 bg-green-500 rounded-full"></span>
+                                    </div>
+                                    <p class="text-sm text-gray-600">john@acme.com</p>
+                                    <p class="text-xs text-gray-500 mt-1">Joined 2 years ago</p>
+                                </div>
+                            </div>
+                            <div class="text-right space-y-2">
+                                <div class="text-sm">
+                                    <p class="text-gray-600">Messages Sent</p>
+                                    <p class="font-bold text-gray-900">1,245</p>
+                                </div>
+                                <button class="text-gray-600 hover:text-gray-900">⋮</button>
+                            </div>
+                        </div>
+
+                        <!-- Member 2 - Agent -->
+                        <div class="p-6 flex items-start justify-between hover:bg-gray-50 transition">
+                            <div class="flex items-start gap-4 flex-1">
+                                <div class="w-12 h-12 bg-green-600 text-white rounded-full flex items-center justify-center font-bold text-lg">SJ</div>
+                                <div>
+                                    <div class="flex items-center gap-2">
+                                        <p class="font-semibold text-gray-900">Sarah Johnson</p>
+                                        <span class="px-2 py-1 bg-green-100 text-green-700 text-xs rounded font-semibold">Agent</span>
+                                        <span class="w-2 h-2 bg-green-500 rounded-full"></span>
+                                    </div>
+                                    <p class="text-sm text-gray-600">sarah@acme.com</p>
+                                    <p class="text-xs text-gray-500 mt-1">Joined 6 months ago</p>
+                                </div>
+                            </div>
+                            <div class="text-right space-y-2">
+                                <div class="text-sm space-y-1">
+                                    <div class="flex gap-4">
+                                        <div>
+                                            <p class="text-gray-600 text-xs">Response Time</p>
+                                            <p class="font-bold text-green-600">3.2m</p>
+                                        </div>
+                                        <div>
+                                            <p class="text-gray-600 text-xs">Messages</p>
+                                            <p class="font-bold text-gray-900">487</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="text-gray-600 hover:text-gray-900">⋮</button>
+                            </div>
+                        </div>
+
+                        <!-- Member 3 - Supervisor -->
+                        <div class="p-6 flex items-start justify-between hover:bg-gray-50 transition">
+                            <div class="flex items-start gap-4 flex-1">
+                                <div class="w-12 h-12 bg-purple-600 text-white rounded-full flex items-center justify-center font-bold text-lg">MC</div>
+                                <div>
+                                    <div class="flex items-center gap-2">
+                                        <p class="font-semibold text-gray-900">Mike Chen</p>
+                                        <span class="px-2 py-1 bg-purple-100 text-purple-700 text-xs rounded font-semibold">Supervisor</span>
+                                        <span class="w-2 h-2 bg-gray-400 rounded-full"></span>
+                                    </div>
+                                    <p class="text-sm text-gray-600">mike@acme.com</p>
+                                    <p class="text-xs text-gray-500 mt-1">Last active 15 minutes ago</p>
+                                </div>
+                            </div>
+                            <div class="text-right space-y-2">
+                                <div class="text-sm space-y-1">
+                                    <div class="flex gap-4">
+                                        <div>
+                                            <p class="text-gray-600 text-xs">Response Time</p>
+                                            <p class="font-bold text-gray-900">6.1m</p>
+                                        </div>
+                                        <div>
+                                            <p class="text-gray-600 text-xs">Messages</p>
+                                            <p class="font-bold text-gray-900">521</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="text-gray-600 hover:text-gray-900">⋮</button>
+                            </div>
+                        </div>
+
+                        <!-- Member 4 - Agent -->
+                        <div class="p-6 flex items-start justify-between hover:bg-gray-50 transition">
+                            <div class="flex items-start gap-4 flex-1">
+                                <div class="w-12 h-12 bg-orange-600 text-white rounded-full flex items-center justify-center font-bold text-lg">ED</div>
+                                <div>
+                                    <div class="flex items-center gap-2">
+                                        <p class="font-semibold text-gray-900">Emma Davis</p>
+                                        <span class="px-2 py-1 bg-green-100 text-green-700 text-xs rounded font-semibold">Agent</span>
+                                        <span class="w-2 h-2 bg-gray-400 rounded-full"></span>
+                                    </div>
+                                    <p class="text-sm text-gray-600">emma@acme.com</p>
+                                    <p class="text-xs text-gray-500 mt-1">Joined 3 months ago</p>
+                                </div>
+                            </div>
+                            <div class="text-right space-y-2">
+                                <div class="text-sm space-y-1">
+                                    <div class="flex gap-4">
+                                        <div>
+                                            <p class="text-gray-600 text-xs">Response Time</p>
+                                            <p class="font-bold text-gray-900">7.4m</p>
+                                        </div>
+                                        <div>
+                                            <p class="text-gray-600 text-xs">Messages</p>
+                                            <p class="font-bold text-gray-900">294</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="text-gray-600 hover:text-gray-900">⋮</button>
+                            </div>
+                        </div>
+
+                        <!-- Member 5 - Finance -->
+                        <div class="p-6 flex items-start justify-between hover:bg-gray-50 transition">
+                            <div class="flex items-start gap-4 flex-1">
+                                <div class="w-12 h-12 bg-pink-600 text-white rounded-full flex items-center justify-center font-bold text-lg">RF</div>
+                                <div>
+                                    <div class="flex items-center gap-2">
+                                        <p class="font-semibold text-gray-900">Rachel Foster</p>
+                                        <span class="px-2 py-1 bg-pink-100 text-pink-700 text-xs rounded font-semibold">Finance</span>
+                                        <span class="w-2 h-2 bg-gray-400 rounded-full"></span>
+                                    </div>
+                                    <p class="text-sm text-gray-600">rachel@acme.com</p>
+                                    <p class="text-xs text-gray-500 mt-1">Joined 8 months ago</p>
+                                </div>
+                            </div>
+                            <div class="text-right space-y-2">
+                                <div class="text-sm">
+                                    <p class="text-gray-600">View Only</p>
+                                    <p class="font-bold text-gray-900">Finance</p>
+                                </div>
+                                <button class="text-gray-600 hover:text-gray-900">⋮</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Member Modal -->
+    <div id="addMemberModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+        <div class="bg-white rounded-lg shadow-lg w-full max-w-2xl p-6 max-h-screen overflow-y-auto">
+            <h3 class="text-2xl font-bold text-gray-900 mb-6">Add Team Member</h3>
+
+            <div class="space-y-6">
+                <!-- Basic Info -->
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-2">Full Name</label>
+                    <input type="text" placeholder="e.g., John Smith" 
+                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-2">Email Address</label>
+                    <input type="email" placeholder="john.smith@company.com" 
+                        class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500">
+                </div>
+
+                <!-- Role Selection -->
+                <div>
+                    <label class="block text-sm font-semibold text-gray-700 mb-3">Assign Role</label>
+                    <div class="space-y-2">
+                        <label class="p-4 border-2 border-green-500 bg-green-50 rounded-lg cursor-pointer">
+                            <input type="radio" name="role" value="agent" class="w-4 h-4 text-green-600" checked>
+                            <div class="ml-3 inline-block">
+                                <p class="font-semibold text-gray-900">Support Agent</p>
+                                <p class="text-xs text-gray-600">Can reply to messages, assign conversations, add tags</p>
+                            </div>
+                        </label>
+
+                        <label class="p-4 border border-gray-300 rounded-lg cursor-pointer hover:border-gray-400">
+                            <input type="radio" name="role" value="supervisor" class="w-4 h-4 text-green-600">
+                            <div class="ml-3 inline-block">
+                                <p class="font-semibold text-gray-900">Supervisor</p>
+                                <p class="text-xs text-gray-600">Can manage agents, view performance metrics, assign tasks</p>
+                            </div>
+                        </label>
+
+                        <label class="p-4 border border-gray-300 rounded-lg cursor-pointer hover:border-gray-400">
+                            <input type="radio" name="role" value="marketing" class="w-4 h-4 text-green-600">
+                            <div class="ml-3 inline-block">
+                                <p class="font-semibold text-gray-900">Marketer</p>
+                                <p class="text-xs text-gray-600">Can create campaigns, manage segments, view analytics</p>
+                            </div>
+                        </label>
+
+                        <label class="p-4 border border-gray-300 rounded-lg cursor-pointer hover:border-gray-400">
+                            <input type="radio" name="role" value="finance" class="w-4 h-4 text-green-600">
+                            <div class="ml-3 inline-block">
+                                <p class="font-semibold text-gray-900">Finance Manager</p>
+                                <p class="text-xs text-gray-600">View-only access to transactions and reports</p>
+                            </div>
+                        </label>
+
+                        <label class="p-4 border border-gray-300 rounded-lg cursor-pointer hover:border-gray-400">
+                            <input type="radio" name="role" value="admin" class="w-4 h-4 text-green-600">
+                            <div class="ml-3 inline-block">
+                                <p class="font-semibold text-gray-900">Admin</p>
+                                <p class="text-xs text-gray-600">Full access - manage team, settings, billing</p>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Permissions Preview -->
+                <div class="p-4 bg-blue-50 border border-blue-200 rounded-lg">
+                    <p class="font-semibold text-blue-900 text-sm mb-2">Permissions Summary:</p>
+                    <div class="space-y-1 text-xs text-blue-800">
+                        <p>✓ Access shared inbox</p>
+                        <p>✓ Reply to messages</p>
+                        <p>✓ View conversation history</p>
+                        <p>✗ Create campaigns (requires marketer role)</p>
+                        <p>✗ Manage team (requires admin role)</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex gap-3 mt-6">
+                <button class="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50">Cancel</button>
+                <button class="flex-1 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 font-semibold">Add Member</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Role Permissions Matrix Modal -->
+    <div id="permissionsModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div class="bg-white rounded-lg shadow-lg w-full max-w-6xl p-6 max-h-screen overflow-y-auto">
+            <h3 class="text-2xl font-bold text-gray-900 mb-6">Role & Permissions Matrix</h3>
+
+            <div class="overflow-x-auto">
+                <table class="w-full border-collapse">
+                    <thead>
+                        <tr class="border-b-2 border-gray-300">
+                            <th class="text-left p-3 font-bold text-gray-900">Feature</th>
+                            <th class="text-center p-3 font-bold text-gray-900">Agent</th>
+                            <th class="text-center p-3 font-bold text-gray-900">Supervisor</th>
+                            <th class="text-center p-3 font-bold text-gray-900">Marketer</th>
+                            <th class="text-center p-3 font-bold text-gray-900">Finance</th>
+                            <th class="text-center p-3 font-bold text-gray-900">Admin</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="border-b border-gray-200">
+                            <td class="p-3 font-semibold text-gray-900">View Inbox</td>
+                            <td class="text-center">✓</td>
+                            <td class="text-center">✓</td>
+                            <td class="text-center">✓</td>
+                            <td class="text-center">✗</td>
+                            <td class="text-center">✓</td>
+                        </tr>
+                        <tr class="border-b border-gray-200">
+                            <td class="p-3 font-semibold text-gray-900">Reply to Messages</td>
+                            <td class="text-center">✓</td>
+                            <td class="text-center">✓</td>
+                            <td class="text-center">✗</td>
+                            <td class="text-center">✗</td>
+                            <td class="text-center">✓</td>
+                        </tr>
+                        <tr class="border-b border-gray-200">
+                            <td class="p-3 font-semibold text-gray-900">Assign Conversations</td>
+                            <td class="text-center">✗</td>
+                            <td class="text-center">✓</td>
+                            <td class="text-center">✗</td>
+                            <td class="text-center">✗</td>
+                            <td class="text-center">✓</td>
+                        </tr>
+                        <tr class="border-b border-gray-200">
+                            <td class="p-3 font-semibold text-gray-900">Create Campaigns</td>
+                            <td class="text-center">✗</td>
+                            <td class="text-center">✗</td>
+                            <td class="text-center">✓</td>
+                            <td class="text-center">✗</td>
+                            <td class="text-center">✓</td>
+                        </tr>
+                        <tr class="border-b border-gray-200">
+                            <td class="p-3 font-semibold text-gray-900">View Analytics</td>
+                            <td class="text-center">Limited</td>
+                            <td class="text-center">✓</td>
+                            <td class="text-center">✓</td>
+                            <td class="text-center">Limited</td>
+                            <td class="text-center">✓</td>
+                        </tr>
+                        <tr class="border-b border-gray-200">
+                            <td class="p-3 font-semibold text-gray-900">View Finances</td>
+                            <td class="text-center">✗</td>
+                            <td class="text-center">✗</td>
+                            <td class="text-center">✗</td>
+                            <td class="text-center">✓</td>
+                            <td class="text-center">✓</td>
+                        </tr>
+                        <tr class="border-b border-gray-200">
+                            <td class="p-3 font-semibold text-gray-900">Manage Team</td>
+                            <td class="text-center">✗</td>
+                            <td class="text-center">✗</td>
+                            <td class="text-center">✗</td>
+                            <td class="text-center">✗</td>
+                            <td class="text-center">✓</td>
+                        </tr>
+                        <tr class="border-b border-gray-200">
+                            <td class="p-3 font-semibold text-gray-900">Manage Settings</td>
+                            <td class="text-center">✗</td>
+                            <td class="text-center">✗</td>
+                            <td class="text-center">✗</td>
+                            <td class="text-center">✗</td>
+                            <td class="text-center">✓</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <button class="mt-6 w-full px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200">Close</button>
+        </div>
+    </div>
+
+    <!-- Navigation Footer -->
+    <div class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 px-6 py-4">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="00-design-index.html" class="text-blue-600 hover:underline font-semibold">← Back to Index</a>
+            <div class="flex gap-4">
+                <span class="text-sm text-gray-600">You are viewing:</span>
+                <a href="05-team-management.html" class="px-3 py-1 bg-pink-100 text-pink-700 rounded font-semibold">👨‍💼 Team</a>
+                <a href="06-analytics.html" class="px-3 py-1 text-gray-600 hover:bg-gray-100 rounded">📊 Next: Analytics</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
